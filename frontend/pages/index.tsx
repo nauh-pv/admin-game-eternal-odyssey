@@ -1,29 +1,22 @@
 import { basePath } from "@/next.config";
-import { postLogin } from "@/services/apiServices";
+import { postLogin } from "@/services/apiServicesAdmin";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, use, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setAccessToken, setUser } from "@/shared/redux/authSlice";
 import { ClipLoader } from "react-spinners";
 import { message } from "antd";
 import { jwtDecode } from "jwt-decode";
 import withAuth from "@/HOC/WithAuth";
-
-interface decodedUser {
-  username: string;
-  user_id: number;
-  user_email: string;
-  partner_id: number;
-  role: string;
-}
+import { auth } from "@/ultis/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 interface UserState {
-  username: string;
+  name: string;
   userId: number;
-  userEmail: string;
-  partnerId: number;
+  email: string;
   role: string;
 }
 
@@ -42,28 +35,44 @@ const Login = () => {
   const loginAccount = async () => {
     setIsLoadingLogin(true);
     try {
-      const res = await postLogin(username, password);
+      const user = auth.currentUser;
 
-      if (res.data.status === 200) {
-        const accessToken: string = res.data.data.access_token;
-        const decodedUser: decodedUser = jwtDecode<decodedUser>(accessToken);
+      if (!user) {
+        console.log("failed to get user");
+        return;
+      }
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        username,
+        password
+      );
+
+      const idToken = await userCredential.user.getIdToken();
+
+      console.log("idToken", idToken);
+
+      const res = await postLogin(idToken);
+      console.log("Check res", res);
+
+      if (res.status === 200) {
+        const decodedUser: any = jwtDecode<any>(idToken);
 
         const userData: UserState = {
-          username: decodedUser.username,
+          name: decodedUser.name,
           userId: decodedUser.user_id,
-          userEmail: decodedUser.user_email,
-          partnerId: decodedUser.partner_id,
-          role: decodedUser.role,
+          email: decodedUser.email,
+          role: "admin",
         };
 
         if (isCheckRemember) {
-          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("accessToken", idToken);
         } else {
-          sessionStorage.setItem("accessToken", accessToken);
+          sessionStorage.setItem("accessToken", idToken);
         }
 
         dispatch(setUser(userData));
-        dispatch(setAccessToken(accessToken));
+        dispatch(setAccessToken(idToken));
         message.success("Login success");
         router.push("/dashboard");
       } else {
