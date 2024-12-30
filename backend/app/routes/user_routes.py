@@ -38,11 +38,10 @@ async def register(user: UserRegister):
 @router.post(
     "/login",
     summary="Đăng nhập người dùng",
-    description="API này cho phép người dùng đăng nhập bằng email và mật khẩu.",
-    response_model=UserResponse)
-async def login(response: Response):
+    description="API này cho phép người dùng đăng nhập bằng email và mật khẩu.")
+async def login(request: Request):
     try:
-        id_token = user_service.extract_token_from_header(response)
+        id_token = user_service.extract_token_from_header(request)
         
         return user_service.login_user(id_token)
     except ValueError as e:

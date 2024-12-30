@@ -56,10 +56,20 @@ def register_user(user: UserRegister) -> Token:
 def login_user(id_token: str) -> dict:
     try:
         decoded_token = auth.verify_id_token(id_token)
+
+        user_id = decoded_token["uid"]
+
+        ref = db.reference(f"users/{user_id}")
+        user_data_from_db = ref.get()
+
+        if not user_data_from_db:
+            raise ValueError("User not found in Firebase Realtime Database")
+
         user_data = {
             "user_id": decoded_token["uid"],
             "email": decoded_token.get("email"),
-            "email": decoded_token.get("username"),
+            "name": decoded_token.get("name"),
+            "role": user_data_from_db.get("role", "user"),
             "message": "Login successful"
         }
         return user_data
@@ -75,6 +85,7 @@ def verify_firebase_token(id_token: str):
 
 def extract_token_from_header(request: Request) -> str:
     auth_header = request.headers.get("Authorization")
+    print(auth_header)
     if not auth_header:
         raise ValueError("Authorization header is missing")
 
@@ -82,6 +93,7 @@ def extract_token_from_header(request: Request) -> str:
         raise ValueError("Authorization header must start with 'Bearer'")
 
     id_token = auth_header.split(" ")[1]
+    print(id_token)
     if not id_token:
         raise ValueError("Bearer token is missing")
 

@@ -88,5 +88,3 @@ async def update_world(world_id: str, updated_data: dict):
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail="Internal Server Error")
-
-
