@@ -1,0 +1,369 @@
+{
+  "itemMenuHeader": [
+    { "title": "Trang Chủ", "path": "#home" },
+    { "title": "Dịch Vụ", "path": "#our-mission" },
+    { "title": "Thống Kê", "path": "#statistics" },
+    { "title": "Đánh Giá", "path": "#testimonials" },
+    { "title": "Công Nghệ", "path": "#framework" },
+    { "title": "Về Chúng Tôi", "path": "#faq" },
+    { "title": "Liên Hệ", "path": "#contact" }
+  ],
+  "footer": {
+    "description1": "MekongAI Bot - Smartly connecting the world of social media. Assisting with interactions, optimizing content, and providing a better user experience.",
+    "description2": "Build your community, analyze data, and automate engagement, making social media management effortless.",
+    "itemMenu": [
+      {
+        "group": "PAGE",
+        "childItem": [
+          { "title": "Email", "path": "" },
+          { "title": "Profile", "path": "" },
+          { "title": "Timeline", "path": "" },
+          { "title": "Projects", "path": "" },
+          { "title": "Contacts", "path": "" },
+          { "title": "Portfolio", "path": "" }
+        ]
+      },
+      {
+        "group": "INFO",
+        "childItem": [
+          { "title": "Our Team", "path": "" },
+          { "title": "Contact US", "path": "" },
+          { "title": "Abour", "path": "" },
+          { "title": "Services", "path": "" },
+          { "title": "Blog", "path": "" },
+          { "title": "Terms & Conditions", "path": "" }
+        ]
+      }
+    ],
+    "itemMenu1": {
+      "group": "THÔNG TIN LIÊN HỆ",
+      "childItem": [
+        {
+          "title": "Trụ sở: B.10.10, Tầng 10, Khối Tháp B, Khu Officetel, Rivergate Residence, 151-155 Bến Vân Đồn, Phường 06, Quận 4, TP. Hồ Chí Minh",
+          "path": "",
+          "cssIcon": "ri-building-line"
+        },
+        {
+          "title": "Chi nhánh 1: Lưu Quang Thuận, Phường Mỹ An, Quận Ngũ Hành Sơn, TP. Đà Nẵng",
+          "path": "",
+          "cssIcon": "ri-map-pin-line"
+        },
+        {
+          "title": "Hotline: O966 828 217",
+          "path": "",
+          "cssIcon": "ri-phone-line"
+        },
+        {
+          "title": "Email: admin@mekongai.com",
+          "path": "",
+          "cssIcon": "ri-mail-line"
+        },
+        {
+          "title": "Mã số thuế: 0316649922",
+          "path": "",
+          "cssIcon": "ri-barcode-line"
+        },
+        {
+          "title": "Người đại diện: ĐẶNG THÀNH LUÂN",
+          "path": "",
+          "cssIcon": "ri-user-line"
+        },
+        {
+          "title": "Ngày hoạt động: 21-12-2020",
+          "path": "",
+          "cssIcon": "ri-calendar-line"
+        }
+      ]
+    },
+    "itemMenu2": [
+      { "cssIcon": "ti-btn-primary", "icon": "ri-facebook-line" },
+      { "cssIcon": "ti-btn-secondary", "icon": "ri-twitter-line" },
+      { "cssIcon": "ti-btn-warning", "icon": "ri-instagram-line" },
+      { "cssIcon": "ti-btn-success", "icon": "ri-github-line" },
+      { "cssIcon": "ti-btn-danger", "icon": "ri-youtube-line" }
+    ],
+    "followUs": "THEO DÕI CHÚNG TÔI:"
+  },
+  "ourMission": {
+    "item": "Dịch vụ",
+    "title": "Our mission consists of 8 major steps.",
+    "description": " Our mission is to make social media management easy, so you can focus on building your brand.",
+    "missionData": [
+      {
+        "id": 1,
+        "icon": "bx-user",
+        "title": "Tư vấn",
+        "butotn": 1,
+        "description": "Mekong AI sẽ giúp bạn xác định tiềm năng ứng dụng AI nhằm tối ưu hóa mọi hoạt động của cá nhân và doanh nghiệp. Chúng tôi sẽ đồng hành cùng bạn gỡ từng nút thắt, mang lại hiệu quả vượt trội và tiết kiệm chi phí."
+      },
+      {
+        "id": 2,
+        "icon": "bx-badge-check",
+        "title": "Đào tạo",
+        "butotn": 2,
+        "description": "Để giúp bạn ứng dụng AI một cách hiệu quả, Mekong AI đem đến các khóa học và chương trình đào tạo toàn diện, hứa hẹn là bước ngoặt tạo giá trị vượt trội trong công việc và cuộc sống."
+      },
+      {
+        "id": 3,
+        "icon": "bx-file",
+        "title": "Giải pháp",
+        "butotn": 1,
+        "description": "Chúng tôi sẽ giúp bạn hiện thực hóa tiềm năng ứng dụng AI nhằm tối ưu hiệu quả hoạt động thông qua các giải pháp AI tùy biến, đáp ứng nhu cầu đặc thù của mỗi cá nhân và doanh nghiệp."
+      }
+    ]
+  },
+  "Statistics": {
+    "headings": {
+      "heading": "Thống kê",
+      "subheading": "Thống kê nổi bật từ MekongAI",
+      "description": "MekongAI mang đến các giải pháp AI sáng tạo, giúp doanh nghiệp tối ưu hiệu quả, mở rộng quy mô và dẫn đầu trong kỷ nguyên số."
+    },
+    "items": [
+      {
+        "id": 1,
+        "icon": "bx-spreadsheet",
+        "title": "120+",
+        "description": "Dự án đã hoàn thành"
+      },
+      {
+        "id": 2,
+        "icon": "bx-user-plus",
+        "title": "100+",
+        "description": "Khách hàng hài lòng"
+      },
+      {
+        "id": 3,
+        "icon": "bx-money",
+        "title": "$12.4M",
+        "description": "Doanh thu tạo ra cho đối tác"
+      },
+      {
+        "id": 4,
+        "icon": "bx-user-circle",
+        "title": "854",
+        "description": "Người dùng hoạt động"
+      },
+      {
+        "id": 5,
+        "icon": "bx-calendar",
+        "title": "5+",
+        "description": "Năm kinh nghiệm AI"
+      }
+    ]
+  },
+  "Customization": {
+    "sectionTitle": "CUSTOMIZATION",
+    "headerTitle": "Designed with precision and well documented",
+    "description": "MekongAI Bot simplifies social media management.",
+    "mainTitle": "Present your awesome social media management features",
+    "mainDescription": "With MekongAI, managing social media becomes smarter and simpler than ever.",
+    "features": [
+      {
+        "title": "Automatic Post Scheduling",
+        "description": "Use AI to generate engaging post ideas and automatically schedule posts to keep your social media channels active."
+      },
+      {
+        "title": "AI-Powered Reply to Messages and Comments",
+        "description": "Automatically reply to customer inquiries with realistic, human-like responses that vary based on the specific question."
+      },
+      {
+        "title": "AI-Generated Images for Posts",
+        "description": "Generate visually appealing images for your posts using AI, making your content more attractive."
+      }
+    ]
+  },
+  "Features": {
+    "sectionTitle": "FEATURES",
+    "headerTitle": "Mekong AI Bot Social Media Features",
+    "features": [
+      {
+        "title": "AI-Generated Content",
+        "imageSrc": "/assets/images/media/landing/web/content.png"
+      },
+      {
+        "title": "Post Scheduling",
+        "imageSrc": "/assets/images/media/landing/web/calender.png"
+      },
+      {
+        "title": "AI Replies",
+        "imageSrc": "/assets/images/media/landing/web/reply.png"
+      },
+      {
+        "title": "Customer Insights",
+        "imageSrc": "/assets/images/media/landing/web/information.png"
+      },
+      {
+        "title": "AI Visuals",
+        "imageSrc": "/assets/images/media/landing/web/image.png"
+      },
+      {
+        "title": "Performance Analysis",
+        "imageSrc": "/assets/images/media/landing/web/efficiency.png"
+      }
+    ]
+  },
+  "Testimonials": {
+    "sectionTitle": "Đánh giá",
+    "headerTitle": "Khách hàng ấn tượng về MekongAI như thế nào?",
+    "breakpoints": {
+      "320": {
+        "slidesPerView": 1,
+        "spaceBetween": 20
+      },
+      "480": {
+        "slidesPerView": 2,
+        "spaceBetween": 30
+      },
+      "780": {
+        "slidesPerView": 3,
+        "spaceBetween": 40
+      },
+      "990": {
+        "slidesPerView": 3,
+        "spaceBetween": 40
+      },
+      "1920": {
+        "slidesPerView": 3,
+        "spaceBetween": 40
+      }
+    },
+    "autoplay": {
+      "delay": 2500,
+      "disableOnInteraction": false
+    },
+    "pagination": {
+      "dynamicBullets": true,
+      "clickable": true
+    },
+    "testimonials": [
+      {
+        "name": "Json Taylor",
+        "role": "CEO OF NORJA",
+        "avatarSrc": "/assets/images/faces/1.png",
+        "review": "Mekong AI Bot đã thay đổi cách chúng tôi quản lý các kênh mạng xã hội. Các phản hồi tự động rất giống con người và khách hàng của chúng tôi rất hài lòng!",
+        "rating": 4.5,
+        "timeAgo": "12 ngày trước"
+      },
+      {
+        "name": "Melissa Blue",
+        "role": "MANAGER CHO",
+        "avatarSrc": "/assets/images/faces/2.png",
+        "review": "Nội dung tự động do Mekong AI Bot tạo ra giúp giữ chân khán giả của chúng tôi mà không cần tốn nhiều công sức. Tiết kiệm được rất nhiều thời gian!",
+        "rating": 4.5,
+        "timeAgo": "7 ngày trước"
+      },
+      {
+        "name": "Kiara Advain",
+        "role": "CEO OF EMPIRO",
+        "avatarSrc": "/assets/images/faces/3.png",
+        "review": "Với Mekong AI Bot, chúng tôi có thể xử lý các câu hỏi của khách hàng ngay lập tức, cải thiện đáng kể thời gian phản hồi. Rất đáng để sử dụng!",
+        "rating": 4,
+        "timeAgo": "2 ngày trước"
+      },
+      {
+        "name": "Jhonson Smith",
+        "role": "CHIEF SECRETARY MBIO",
+        "avatarSrc": "/assets/images/faces/4.png",
+        "review": "Tôi rất thích việc Mekong AI Bot có thể tự động tạo ra những hình ảnh bắt mắt. Đây là một bước đột phá lớn cho chiến dịch marketing của chúng tôi.",
+        "rating": 4.5,
+        "timeAgo": "16 giờ trước"
+      },
+      {
+        "name": "Dwayne Stort",
+        "role": "CEO ARMEDILLO",
+        "avatarSrc": "/assets/images/faces/5.png",
+        "review": "Tính năng lên lịch rất tuyệt vời. Tôi không còn phải lo lắng về thời gian đăng bài nữa - Mekong AI Bot đã làm tất cả.",
+        "rating": 4,
+        "timeAgo": "22 ngày trước"
+      },
+      {
+        "name": "Jasmine Kova",
+        "role": "AGENT AMIO",
+        "avatarSrc": "/assets/images/faces/6.png",
+        "review": "Các hình ảnh do AI tạo ra rất đẹp và phù hợp hoàn hảo với thẩm mỹ thương hiệu của chúng tôi. Công cụ cần thiết cho tự động hóa truyền thông mạng xã hội!",
+        "rating": 4.5,
+        "timeAgo": "26 ngày trước"
+      },
+      {
+        "name": "Dolph MR",
+        "role": "CEO MR BRAND",
+        "avatarSrc": "/assets/images/faces/7.png",
+        "review": "Các tính năng tự động của Mekong AI Bot đã giảm đáng kể khối lượng công việc của chúng tôi, cho phép chúng tôi tập trung nhiều hơn vào chiến lược phát triển.",
+        "rating": 5,
+        "timeAgo": "1 tháng trước"
+      },
+      {
+        "name": "Brenda Simpson",
+        "role": "CEO AIBMO",
+        "avatarSrc": "/assets/images/faces/8.png",
+        "review": "Sản phẩm tuyệt vời! Các phản hồi tự động từ AI luôn chính xác và tạo cảm giác cá nhân hóa trong mọi tương tác với khách hàng.",
+        "rating": 4.5,
+        "timeAgo": "1 tháng trước"
+      },
+      {
+        "name": "Julia Sams",
+        "role": "CHIEF SECRETARY BHOL",
+        "avatarSrc": "/assets/images/faces/9.png",
+        "review": "Với Mekong AI Bot, việc quản lý sự hiện diện trực tuyến của thương hiệu chúng tôi trở nên dễ dàng hơn bao giờ hết. Giống như có một trợ lý ảo hoạt động 24/7 vậy!",
+        "rating": 5,
+        "timeAgo": "2 tháng trước"
+      }
+    ]
+  },
+
+  "FAQ": {
+    "sectionTitle": "Câu hỏi thường gặp",
+    "headerTitle": "Những câu hỏi thường gặp về MekongAI",
+    "description": "Giải đáp các thắc mắc phổ biến để bạn hiểu rõ hơn về MekongAI và các giải pháp mà chúng tôi cung cấp.",
+    "faqs": [
+      {
+        "id": "faq-one",
+        "question": "MekongAI là ai?",
+        "answer": "MekongAI là công ty công nghệ chuyên cung cấp các giải pháp AI tiên tiến, bao gồm chatbot, tạo ảnh bằng AI và tự động hóa mạng xã hội.",
+        "isExpanded": true
+      },
+      {
+        "id": "faq-two",
+        "question": "MekongAI hoạt động trong lĩnh vực nào?",
+        "answer": "MekongAI tập trung vào lĩnh vực trí tuệ nhân tạo (AI), đặc biệt là trong các mảng chatbot, xử lý ngôn ngữ tự nhiên (NLP), tạo nội dung bằng AI và phân tích dữ liệu.",
+        "isExpanded": false
+      },
+      {
+        "id": "faq-three",
+        "question": "MekongAI cung cấp các sản phẩm và dịch vụ nào?",
+        "answer": "Chúng tôi cung cấp các sản phẩm như chatbot thông minh, công cụ tạo ảnh bằng AI, bot quản lý mạng xã hội, và giải pháp tự động hóa quy trình làm việc.",
+        "isExpanded": false
+      },
+      {
+        "id": "faq-four",
+        "question": "Lợi ích khi sử dụng dịch vụ của MekongAI là gì?",
+        "answer": "Sử dụng dịch vụ của MekongAI giúp doanh nghiệp tối ưu hóa quy trình, nâng cao hiệu quả vận hành, tương tác tốt hơn với khách hàng và tiết kiệm thời gian.",
+        "isExpanded": false
+      },
+      {
+        "id": "faq-five",
+        "question": "Ai có thể sử dụng dịch vụ của MekongAI?",
+        "answer": "Dịch vụ của chúng tôi phù hợp cho các doanh nghiệp thuộc mọi ngành nghề, từ thương mại điện tử, tài chính, giáo dục đến chăm sóc sức khỏe và nhiều lĩnh vực khác.",
+        "isExpanded": false
+      },
+      {
+        "id": "faq-six",
+        "question": "Làm thế nào để bắt đầu sử dụng dịch vụ của MekongAI?",
+        "answer": "Bạn có thể liên hệ với chúng tôi qua trang web chính thức để được tư vấn và đăng ký dịch vụ phù hợp với nhu cầu của bạn.",
+        "isExpanded": false
+      },
+      {
+        "id": "faq-seven",
+        "question": "MekongAI có hỗ trợ tùy chỉnh sản phẩm không?",
+        "answer": "Có, chúng tôi cung cấp các giải pháp tùy chỉnh để phù hợp với yêu cầu và mục tiêu riêng của từng doanh nghiệp.",
+        "isExpanded": false
+      },
+      {
+        "id": "faq-eight",
+        "question": "MekongAI có hỗ trợ khách hàng sau khi triển khai không?",
+        "answer": "Chúng tôi luôn đồng hành và hỗ trợ khách hàng trong suốt quá trình sử dụng sản phẩm, đảm bảo giải quyết kịp thời mọi vấn đề phát sinh.",
+        "isExpanded": false
+      }
+    ]
+  }
+}
