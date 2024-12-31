@@ -1,23 +1,38 @@
-from app.database import get_db_ref
 from typing import List, Dict
 from fastapi import Request
 from firebase_admin import auth, db
+from datetime import datetime
+
+from app.database import get_db_ref
 
 from app.models.user_model import UserRegister, Token
 
-def fetch_all_users() -> List[Dict[str, str]]:
-    db_ref = get_db_ref("users")
-    users_data = db_ref.get()
+def format_timestamp(timestamp: int) -> str:
+    """Chuyển đổi timestamp thành chuỗi ngày giờ."""
+    return datetime.fromtimestamp(timestamp / 1000).strftime('%d/%m/%Y %H:%M:%S')  # Chia 1000 vì timestamp là mili giây
 
-    if not users_data:
-        return []
+
+def fetch_all_users() -> List[Dict[str, str]]:
+    all_users = auth.list_users().iterate_all()  # Lấy tất cả người dùng
+    user_list = []
+
+    for user in all_users:
+        user_id = user.uid
+        db_ref = db.reference(f"users/{user_id}")
+        user_data = db_ref.get() or {}
+
+        user_info = {
+            "id": user_id,
+            "email": user.email,
+            "username": user_data.get("username", "N/A"),
+            "created_at": format_timestamp(user.user_metadata.creation_timestamp),  # Chuyển đổi timestamp
+            "updated_at": format_timestamp(user_data.get("updated_at", 0)), 
+            "status": user_data.get("status", "N/A"),
+            "role": user_data.get("role", "user"),  
+        }
+        user_list.append(user_info)
     
-    users = []
-    for user_id, user_info in users_data.item():
-        user_info["id"] = user_id
-        users.append(user_info)
-    
-    return users
+    return user_list
 
 def user_exists(email: str, username: str) -> bool:
     users_ref = db.reference("users")
