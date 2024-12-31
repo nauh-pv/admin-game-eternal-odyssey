@@ -1,12 +1,7 @@
 import store from "@/shared/redux/store";
 import axios, { AxiosInstance } from "axios";
 import { auth } from "./firebase";
-import { jwtDecode } from "jwt-decode";
-import {
-  clearAccessToken,
-  setAccessToken,
-  setUser,
-} from "@/shared/redux/authSlice";
+import { clearAccessToken, setAccessToken } from "@/shared/redux/authSlice";
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: "http://127.0.0.1:8000/api/v1/",
@@ -46,20 +41,9 @@ axiosInstance.interceptors.response.use(
         }
 
         const newIdToken = await user.getIdToken(true);
-        const decodedUser: any = jwtDecode<any>(newIdToken);
-
-        const userData = {
-          userId: decodedUser.user_id,
-          email: decodedUser.email,
-          name: decodedUser.name,
-          role: decodedUser.role,
-        };
-
-        store.dispatch(setUser(userData));
 
         store.dispatch(setAccessToken(newIdToken));
 
-        // Cập nhật request với token mới
         originalRequest.headers.Authorization = `Bearer ${newIdToken}`;
         return axiosInstance(originalRequest);
       } catch (refreshError) {

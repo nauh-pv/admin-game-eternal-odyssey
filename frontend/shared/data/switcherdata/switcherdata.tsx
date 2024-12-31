@@ -1,4 +1,4 @@
-import MenuItems from "@/shared/layout-components/sidebar/nav";
+import { MenuItems } from "@/shared/layout-components/sidebar/nav";
 import store from "@/shared/redux/store";
 import { ClassAttributes, InputHTMLAttributes, JSX, useState } from "react";
 
@@ -23,7 +23,7 @@ export function Light(actionfunction: any) {
   actionfunction({
     ...theme,
     class: "light",
-    dataHeaderStyles: "light",
+    dataHeaderStyles: "dark",
     bodyBg: "",
     darkBg: "",
     inputBorder: "",

@@ -3,15 +3,14 @@ import { postLogin } from "@/services/apiServicesAdmin";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { Fragment, use, useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setAccessToken, setUser } from "@/shared/redux/authSlice";
 import { ClipLoader } from "react-spinners";
 import { message } from "antd";
 import { jwtDecode } from "jwt-decode";
-import withAuth from "@/HOC/WithAuth";
 import { auth } from "@/ultis/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 interface UserState {
   name: string;
@@ -35,13 +34,6 @@ const Login = () => {
   const loginAccount = async () => {
     setIsLoadingLogin(true);
     try {
-      const user = auth.currentUser;
-
-      if (!user) {
-        console.log("failed to get user");
-        return;
-      }
-
       const userCredential = await signInWithEmailAndPassword(
         auth,
         username,
@@ -50,19 +42,16 @@ const Login = () => {
 
       const idToken = await userCredential.user.getIdToken();
 
-      console.log("idToken", idToken);
-
       const res = await postLogin(idToken);
-      console.log("Check res", res);
 
-      if (res.status === 200) {
+      if (res.status === 200 && res.data.role === "admin") {
         const decodedUser: any = jwtDecode<any>(idToken);
 
         const userData: UserState = {
           name: decodedUser.name,
           userId: decodedUser.user_id,
           email: decodedUser.email,
-          role: "admin",
+          role: res.data.role,
         };
 
         if (isCheckRemember) {
@@ -83,6 +72,16 @@ const Login = () => {
       console.log(e);
       message.error("Don't login now!");
       setIsLoadingLogin(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("User logged out successfully!");
+      // Chuyển hướng người dùng hoặc thực hiện các hành động khác sau khi đăng xuất
+    } catch (error) {
+      console.error("Error logging out:", error);
     }
   };
 
@@ -109,7 +108,7 @@ const Login = () => {
   return (
     <Fragment>
       <form onSubmit={handleLogin}>
-        <div className="container">
+        <div className="conta iner">
           <div className="flex justify-center authentication authentication-basic items-center h-full text-defaultsize text-defaulttextcolor">
             <div className="grid grid-cols-12">
               <div className="xxl:col-span-4 xl:col-span-4 lg:col-span-4 md:col-span-3 sm:col-span-2"></div>
@@ -450,4 +449,5 @@ const Login = () => {
   );
 };
 
-export default withAuth(Login);
+Login.layout = "Authenticationlayout";
+export default Login;

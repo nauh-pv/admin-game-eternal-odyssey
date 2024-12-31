@@ -1,8 +1,9 @@
-import axios from "axios";
+import axios from "@/ultis/axiosInstance";
 
+//Auth
 const postLogin = (idToken: any) => {
   return axios.post(
-    "http://127.0.0.1:8000/api/v1/users/login",
+    "users/login",
     {},
     {
       headers: {
@@ -13,4 +14,17 @@ const postLogin = (idToken: any) => {
   );
 };
 
-export { postLogin };
+//User manager
+const getAllUsers = () => {
+  return axios.get("users");
+};
+
+const deleteAUser = (userID: string) => {
+  return axios.delete(`users/${userID}`);
+};
+
+const patchChangePassUser = (userID: string, password: any) => {
+  return axios.patch(`users/${userID}`, password);
+};
+
+export { postLogin, getAllUsers, deleteAUser, patchChangePassUser };

@@ -1,18 +1,20 @@
 import React from "react";
 
-const DashboardIcon = <i className="bx bx-home side-menu__icon"></i>;
+const DashboardIcon = <i className="bx bx-home-alt side-menu__icon"></i>;
 
-const PagesIcon = <i className="bx bx-file-blank side-menu__icon"></i>;
+const UserManagerIcon = <i className="bx bx-user side-menu__icon"></i>;
 
-const TaskIcon = <i className="bx bx-task side-menu__icon"></i>;
+const WorldsManagerIcon = <i className="bx bx-globe side-menu__icon"></i>;
 
-const AuthenticationIcon = (
-  <i className="bx bx-fingerprint side-menu__icon"></i>
+const QuestManagerIcon = <i className="bx bx-task side-menu__icon"></i>;
+
+const EnemyManagerIcon = <i className="bx bx-bomb side-menu__icon"></i>;
+
+const BuildingManagerIcon = <i className="bx bx-building side-menu__icon"></i>;
+
+const WeaponsManagerIcon = (
+  <i className="bx bx-target-lock side-menu__icon"></i>
 );
-
-const ErrorIcon = <i className="bx bx-error side-menu__icon"></i>;
-
-const WidgetsIcon = <i className="bx bx-gift side-menu__icon"></i>;
 
 const badge = (
   <span className="badge !bg-warning/10 !text-warning !py-[0.25rem] !px-[0.45rem] !text-[0.75em] ms-2">
@@ -46,243 +48,56 @@ export const MenuItems: any = [
     type: "link",
     active: false,
     selected: false,
-    path: "/partner-dashboard",
+    path: "/dashboard",
   },
   {
-    icon: PagesIcon,
+    icon: UserManagerIcon,
+    title: "User Manager",
+    type: "link",
+    active: false,
+    selected: false,
+    path: "/dashboard/users",
+  },
+  {
+    icon: WorldsManagerIcon,
     badgetxt: badge1,
-    path: "/partner-dashboard/file-manager",
+    path: "/dashboard/worlds",
     type: "link",
     active: false,
     selected: false,
-    title: "File Manager",
+    title: "Worlds Manager",
   },
   {
-    icon: DashboardIcon,
-    title: "CRM",
+    icon: QuestManagerIcon,
+    title: "Quest Manager",
     type: "link",
     active: false,
     selected: false,
-    path: "/partner-dashboard/crm",
+    path: "/dashboard/quests",
   },
   {
-    icon: DashboardIcon,
-    title: "HRM",
+    icon: EnemyManagerIcon,
+    title: "Enemies Manager",
     type: "link",
     active: false,
     selected: false,
-    path: "/partner-dashboard/hrm",
+    path: "/dashboard/enemies",
   },
   {
-    path: "/list-view",
-    title: "List View",
-    icon: TaskIcon,
-    badgetxt: badge1,
+    icon: BuildingManagerIcon,
+    title: "Building Manager",
     type: "link",
     active: false,
     selected: false,
+    path: "/dashboard/buildings",
   },
   {
-    icon: AuthenticationIcon,
-    title: " Authentication",
-    type: "sub",
-    active: false,
-    selected: false,
-    children: [
-      {
-        path: "/authentication/coming-soon",
-        type: "link",
-        active: false,
-        selected: false,
-        title: "Coming Soon",
-      },
-
-      {
-        title: "Create Password",
-        type: "sub",
-        menusub: true,
-        active: false,
-        selected: false,
-        children: [
-          {
-            path: "/authentication/create-password/create-basic",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Basic",
-          },
-          {
-            path: "/authentication/create-password/create-cover",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Cover",
-          },
-        ],
-      },
-      {
-        title: "Lock Screen",
-        type: "sub",
-        menusub: true,
-        active: false,
-        selected: false,
-        children: [
-          {
-            path: "/authentication/lock-screen/screen-basic",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Basic",
-          },
-          {
-            path: "/authentication/lock-screen/screen-cover",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Cover",
-          },
-        ],
-      },
-      {
-        title: "Reset Password",
-        type: "sub",
-        menusub: true,
-        active: false,
-        selected: false,
-        children: [
-          {
-            path: "/authentication/reset-password/reset-basic",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Basic",
-          },
-          {
-            path: "/authentication/reset-password/reset-cover",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Cover",
-          },
-        ],
-      },
-      {
-        title: "Sign In",
-        type: "sub",
-        menusub: true,
-        active: false,
-        selected: false,
-        children: [
-          {
-            path: "/authentication/sign-in/signin-basic",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Basic",
-          },
-          {
-            path: "/authentication/sign-in/signin-cover",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Cover",
-          },
-        ],
-      },
-      {
-        title: "Sign Up",
-        type: "sub",
-        menusub: true,
-        active: false,
-        selected: false,
-        children: [
-          {
-            path: "/authentication/sign-up/signup-basic",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Basic",
-          },
-          {
-            path: "/authentication/sign-up/signup-cover",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Cover",
-          },
-        ],
-      },
-      {
-        title: "Two Step Verification",
-        type: "sub",
-        menusub: true,
-        active: false,
-        selected: false,
-        children: [
-          {
-            path: "/authentication/two-step-verification/two-basic",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Basic",
-          },
-          {
-            path: "/authentication/two-step-verification/two-cover",
-            type: "link",
-            active: false,
-            selected: false,
-            title: "Cover",
-          },
-        ],
-      },
-      {
-        path: "/authentication/under-maintanance",
-        type: "link",
-        active: false,
-        selected: false,
-        title: "Under Maintainance",
-      },
-    ],
-  },
-  {
-    icon: ErrorIcon,
-    title: "Error",
-    type: "sub",
-    active: false,
-    selected: false,
-    children: [
-      {
-        path: "/error/error-401",
-        type: "link",
-        active: false,
-        selected: false,
-        title: "401-Error",
-      },
-      {
-        path: "/error/error-404",
-        type: "link",
-        active: false,
-        selected: false,
-        title: "404-Error",
-      },
-      {
-        path: "/error/error-500",
-        type: "link",
-        active: false,
-        selected: false,
-        title: "500-Error",
-      },
-    ],
-  },
-  {
-    path: "/widgets",
-    title: "widgets",
-    icon: WidgetsIcon,
+    path: "/dashboard/weapons",
+    title: "Weapons Manager",
+    icon: WeaponsManagerIcon,
     badgetxt: badge2,
     type: "link",
     active: false,
     selected: false,
   },
 ];
-
-export default MenuItems;

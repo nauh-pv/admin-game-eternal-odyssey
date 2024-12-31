@@ -7,7 +7,6 @@ import { postRegisterAccount, postVerifyEmail } from "@/services/apiServices";
 import { ClipLoader } from "react-spinners";
 import { message } from "antd";
 import { useRouter } from "next/router";
-import withAuth from "@/HOC/WithAuth";
 import { useSelector } from "react-redux";
 import { RootState } from "@/shared/redux/store";
 
@@ -395,4 +394,5 @@ const Signup = () => {
   );
 };
 
-export default withAuth(Signup);
+Signup.layout = "Authenticationlayout";
+export default Signup;

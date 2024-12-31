@@ -57,40 +57,10 @@ const TableData = ({
   };
 
   const filteredList = list.filter((item) => {
-    if (componentName === "File") {
+    if (componentName === "Users") {
       return (
         item.fileName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.collectionName.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    } else if (componentName === "Identity") {
-      return (
-        item.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.info?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.story?.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    } else if (componentName === "Page") {
-      return item.page?.toLowerCase().includes(searchTerm.toLowerCase());
-    } else if (componentName === "Procedure") {
-      return (
-        item.procedureName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.procedure?.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    } else if (componentName === "Config") {
-      return (
-        item.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.role?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.target?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.mission?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.note?.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    } else if (componentName === "PostSchedule") {
-      return (
-        item.pageID?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.numberIterations
-          ?.toString()
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-        item.customFrequency?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     return false;

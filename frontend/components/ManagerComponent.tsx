@@ -1,8 +1,6 @@
 import Seo from "@/shared/layout-components/seo/seo";
 import React, { Fragment, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { Checkbox } from "antd";
-import withAuth from "@/HOC/WithAuth";
 import dynamic from "next/dynamic";
 import ModalConfirm from "@/modals/ModalConfirm";
 import { ClipLoader } from "react-spinners";
@@ -106,12 +104,6 @@ const ManagerComponent = ({
               <p className="mb-0 font-semibold text-[.875rem]">Filter</p>
             </div>
             <div className="w-full flex justify-between items-center mb-4">
-              {onChangeAuto && (
-                <Checkbox onChange={onChangeAuto}>
-                  Auto reply {componentName}
-                </Checkbox>
-              )}
-
               <div className="relative max-w-md">
                 <input
                   type="text"
@@ -158,7 +150,5 @@ const ManagerComponent = ({
   );
 };
 
-export default withAuth(ManagerComponent, {
-  requiredRole: "user",
-  layout: "Contentlayout",
-});
+ManagerComponent.layout = "Contentlayout";
+export default ManagerComponent;

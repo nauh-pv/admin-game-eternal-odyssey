@@ -10,7 +10,7 @@ const Switcher = ({ local_varaiable, ThemeChanger }: any) => {
       ...local_varaiable,
       dir: "ltr",
       dataNavLayout: "vertical",
-      dataMenuStyles: "dark",
+      dataMenuStyles: "light",
       dataHeaderStyle: "light",
       dataToggled: "",
     });

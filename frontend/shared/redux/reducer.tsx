@@ -1,7 +1,7 @@
 let initialState = {
   lang: "en",
   dir: "ltr",
-  class: "dark",
+  class: "light",
   dataMenuStyles: "dark",
   dataNavLayout: "vertical",
   dataHeaderStyles: "dark",

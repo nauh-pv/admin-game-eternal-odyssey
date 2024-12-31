@@ -1,4 +1,3 @@
-// components/Spinner.tsx
 import React from "react";
 import { ClipLoader } from "react-spinners";
 

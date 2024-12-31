@@ -10,7 +10,7 @@ import SimpleBar from "simplebar-react";
 import Menuloop from "./menuloop";
 import Image from "next/image";
 
-const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
+const SidebarUser = ({ local_varaiable, ThemeChanger }: any) => {
   const [menuitems, setMenuitems] = useState(MenuItems);
 
   function closeMenu() {
@@ -417,7 +417,6 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
   function setMenuUsingUrl(currentPath: any) {
     hasParent = false;
     hasParentLevel = 1;
-    // Check current url and trigger the setSidemenu method to active the menu.
     const setSubmenuRecursively = (items: any) => {
       items?.forEach((item: any) => {
         if (item.path == "") {
@@ -432,16 +431,9 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
   const [previousUrl, setPreviousUrl] = useState("/");
 
   useEffect(() => {
-    // Select the target element
     const targetElement = document.documentElement;
-
-    // Create a MutationObserver instance
     const observer = new MutationObserver(handleAttributeChange);
-
-    // Configure the observer to watch for attribute changes
     const config = { attributes: true };
-
-    // Start observing the target element
     observer.observe(targetElement, config);
     let currentPath = location.pathname.endsWith("/")
       ? location.pathname.slice(0, -1)
@@ -578,6 +570,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
       }
     }
   }
+
   function closeOtherMenus(MenuItems: any, targetObject: any) {
     for (const item of MenuItems) {
       if (item !== targetObject) {
@@ -588,6 +581,7 @@ const Sidebar = ({ local_varaiable, ThemeChanger }: any) => {
       }
     }
   }
+
   function findParent(MenuItems: any, targetObject: any) {
     for (const item of MenuItems) {
       if (item.children && item.children.includes(targetObject)) {
@@ -832,4 +826,4 @@ const mapStateToProps = (state: any) => ({
   local_varaiable: state.main,
 });
 
-export default connect(mapStateToProps, { ThemeChanger })(Sidebar);
+export default connect(mapStateToProps, { ThemeChanger })(SidebarUser);
