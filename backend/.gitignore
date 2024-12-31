@@ -1,0 +1,96 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# FastAPI specific
+instance/
+*.db
+*.sqlite3
+
+# Test and Coverage results
+.coverage
+.tox/
+.nox/
+*.cover
+coverage.xml
+*.lcov
+nosetests.xml
+pytest_cache/
+.pytest_cache/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Logs and debug files
+*.log
+*.out
+*.err
+*.log.*
+logs/
+debug.log
+
+# Cache files and folders
+*.cache
+*.bak
+*.backup
+*.tmp
+.cache/
+.DS_Store
+*.egg-info/
+*.eggs/
+build/
+dist/
+
+# Dependency directories
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Docker
+*.env
+.env.*
+docker-compose.override.yml
+
+# System files
+Thumbs.db
+.DS_Store
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Profiling
+.prof
+
+# MyPy type checker cache
+.mypy_cache/
+
+# Pyright type checker cache
+.pyright/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Documentation artifacts
+_site/
+docs/_build/
+build/
+
+# Local settings
+settings.local.*
+
+# Git-ignored backup files
+*.orig

@@ -1,0 +1,7 @@
+{
+  "listActionType": ["Comment", "Message", "Post"],
+  "identity": {
+    "placeholderInfo": "- Tên: Bảo Ngọc\n- Giới tính: Nữ\n- Ngày tháng năm sinh: 12/06/1995\n- Tuổi: 28 tuổi\n- Quê quán: Tiền Giang\n- Nơi ở hiện tại: Quận 3, Thành phố Hồ Chí Minh",
+    "placeholderExampleConversation": "- Tình huống: Khách hàng gặp vấn đề với sản phẩm mới mua và muốn đổi hàng.\n- Cuộc trò chuyện:\n+ Khách hàng: `Chào shop, mình mới mua sản phẩm nhưng không dùng như mong muốn, có đổi được không?`"
+  }
+}

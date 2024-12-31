@@ -1,5 +1,4 @@
 from fastapi import APIRouter, HTTPException, Depends, Request, Response
-from app.services.user_service import fetch_all_users
 from app.models.user_model import UserRegister, UserLogin, Token, UserResponse
 from app.services import user_service
 
@@ -11,7 +10,7 @@ router = APIRouter(
 @router.get("/", summary="Lấy danh sách người dùng", description="API này trả về danh sách tất cả người dùng.")
 def get_all_users():
     try: 
-      users = fetch_all_users()
+      users = user_service.fetch_all_users()
       if not users:
         raise HTTPException(status_code=404, detail="No users found")
       return {"data": users, "message": "Successfully fetched users"}
@@ -38,11 +37,10 @@ async def register(user: UserRegister):
 @router.post(
     "/login",
     summary="Đăng nhập người dùng",
-    description="API này cho phép người dùng đăng nhập bằng email và mật khẩu.",
-    response_model=UserResponse)
-async def login(response: Response):
+    description="API này cho phép người dùng đăng nhập bằng email và mật khẩu.")
+async def login(request: Request):
     try:
-        id_token = user_service.extract_token_from_header(response)
+        id_token = user_service.extract_token_from_header(request)
         
         return user_service.login_user(id_token)
     except ValueError as e:

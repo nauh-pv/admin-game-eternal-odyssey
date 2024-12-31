@@ -1,0 +1,24 @@
+{
+  "dropdownItems": [
+    {
+      "href": "/components/pages/profile/",
+      "icon": "ti ti-user-circle",
+      "label": "Profile"
+    },
+    {
+      "href": "/components/pages/todo-list/",
+      "icon": "ti ti-clipboard-check",
+      "label": "Task Manager"
+    },
+    {
+      "href": "#!",
+      "icon": "ti ti-wallet",
+      "label": "Bal"
+    },
+    {
+      "href": "/components/pages/chat/",
+      "icon": "ti ti-headset",
+      "label": "Support"
+    }
+  ]
+}
