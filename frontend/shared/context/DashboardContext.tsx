@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { AppDispatch, RootState } from "../redux/store";
 import { LoadingComponent } from "@/components/Loading";
 import { getAllUsers } from "@/services/apiServicesAdmin";
@@ -25,22 +26,26 @@ interface DashboardProviderProps {
 export const DashboardProvider = ({ children }: DashboardProviderProps) => {
   const [listUsers, setListUsers] = useState<UsersData[]>([]);
 
-  const { user, accessToken, isAuthenticated } = useSelector(
-    (state: RootState) => state.auth
-  );
-  const dispatch = useDispatch<AppDispatch>();
   const isLoadingGlobal = useSelector(
     (state: RootState) => state.loading.global
   );
 
   const fetchListUsers = useCallback(async () => {
-    console.log(accessToken);
-
     try {
       const response = await getAllUsers();
       console.log("response users:", response);
+      if (response.status === 200) {
+        const usersList = response.data.data.map((item: any) => ({
+          id: item.id,
+          username: item.username,
+          email: item.email,
+          role: item.role,
+          createdAt: item.created_at,
+          status: item.status,
+        }));
 
-      setListUsers(response.data);
+        setListUsers([...usersList]);
+      }
     } catch (error) {
       console.log("error users:", error);
     }

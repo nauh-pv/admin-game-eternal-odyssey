@@ -12,6 +12,7 @@ export const imageOptions = [
   { value: "from_library", label: "Photo from library" },
   { value: "from_AI", label: "Photo from AI generated" },
 ];
+
 export const repeatOptions = [
   { value: "0", label: "None" },
   { value: "1", label: "Daily" },

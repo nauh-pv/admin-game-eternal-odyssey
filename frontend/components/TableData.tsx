@@ -59,8 +59,8 @@ const TableData = ({
   const filteredList = list.filter((item) => {
     if (componentName === "Users") {
       return (
-        item.fileName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.collectionName.toLowerCase().includes(searchTerm.toLowerCase())
+        item.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.username.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     return false;

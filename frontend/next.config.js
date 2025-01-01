@@ -21,6 +21,7 @@ const nextConfig = {
     "rc-util",
     "rc-pagination",
     "rc-picker",
+    "rc-input",
     "@ant-design/icons-svg",
   ],
   webpack: (config) => {
