@@ -27,7 +27,7 @@ def fetch_all_users() -> List[Dict[str, str]]:
             "username": user_data.get("username", "N/A"),
             "created_at": format_timestamp(user.user_metadata.creation_timestamp),  # Chuyển đổi timestamp
             "updated_at": format_timestamp(user_data.get("updated_at", 0)), 
-            "status": user_data.get("status", "N/A"),
+            "status": user_data.get("status", "1"),
             "role": user_data.get("role", "user"),  
         }
         user_list.append(user_info)
