@@ -175,18 +175,20 @@ const ModalUser = ({
   return (
     <div>
       <Modal
-        title={"User"}
+        title={t("modalUser.user")}
         open={isOpenModalUser}
         onOk={handleSubmitModal}
-        okText={"Update User"}
+        okText={t("modalUser.updateButton")}
         onCancel={handleCloseModalUser}
+        cancelText={t("modalUser.cancelButton")}
         width={1000}
       >
-        <p className="font-bold">{t("modalUser.userDetails")}</p>
-        <div className="!grid grid-cols-12 gap-6">
-          <div className="col-span-3 flex flex-col gap-1">
+        <p className="font-bold mb-2">{t("modalUser.userDetails")}</p>
+        <div className="grid grid-cols-12 gap-6">
+          <div className="col-span-modal-3">
             <p>
-              User ID<label className="text-red">&nbsp;&#42;</label>
+              {t("modalUser.userId")}
+              <label className="text-red">&nbsp;&#42;</label>
             </p>
             <TextArea
               className="custom-areatext"
@@ -196,9 +198,10 @@ const ModalUser = ({
               autoSize={{ minRows: 1, maxRows: 1 }}
             />
           </div>
-          <div className="col-span-3 flex flex-col gap-1">
+          <div className="col-span-modal-3">
             <p>
-              Email<label className="text-red">&nbsp;&#42;</label>
+              {t("modalUser.email")}
+              <label className="text-red">&nbsp;&#42;</label>
             </p>
             <TextArea
               className="custom-areatext !h-fit"
@@ -207,7 +210,7 @@ const ModalUser = ({
               value={userData.email}
             />
           </div>
-          <div className="col-span-3 flex flex-col gap-1">
+          <div className="col-span-modal-3">
             <p>
               {t("modalUser.username")}
               <label className="text-red">&nbsp;&#42;</label>
@@ -219,9 +222,9 @@ const ModalUser = ({
               value={userData.username}
             />
           </div>
-          <div className="col-span-3 flex flex-col gap-1">
+          <div className="col-span-modal-3">
             <p>
-              {t("modalUser.createAt")}
+              {t("modalUser.createdAt")}
               <label className="text-red">&nbsp;&#42;</label>
             </p>
             <TextArea
@@ -232,7 +235,7 @@ const ModalUser = ({
               value={userData.createdAt}
             />
           </div>
-          <div className="col-span-3 flex flex-col gap-1">
+          <div className="col-span-modal-3">
             <p>
               {t("modalUser.role")}
               <label className="text-red">&nbsp;&#42;</label>
@@ -244,7 +247,7 @@ const ModalUser = ({
               style={{ width: "100%" }}
             />
           </div>
-          <div className="col-span-3 flex flex-col gap-1">
+          <div className="col-span-modal-3">
             <p>
               {t("modalUser.status")}
               <label className="text-red">&nbsp;&#42;</label>
@@ -262,7 +265,7 @@ const ModalUser = ({
           <p>Loading...</p>
         ) : (
           <div>
-            {userWorlds.length > 0 && (
+            {userWorlds.length > 0 ? (
               <Table
                 rowClassName={() => "no-hover"}
                 columns={columnName}
@@ -272,6 +275,8 @@ const ModalUser = ({
                   onClick: () => handleRowClick(record),
                 })}
               />
+            ) : (
+              <div>{t("modalUser.notInWorld")}</div>
             )}
           </div>
         )}
