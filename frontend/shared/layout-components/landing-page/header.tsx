@@ -136,7 +136,7 @@ const Header = () => {
                   </button>
                   <div className="md:block hidden dropdown-profile">
                     <p className="font-semibold mb-0 leading-none text-[#536485] text-[0.813rem] ">
-                      {user.user?.username}
+                      {user.user?.name}
                     </p>
                     <span className="opacity-[0.7] font-normal text-[#536485] block text-[0.6875rem] ">
                       {user.user?.role}
