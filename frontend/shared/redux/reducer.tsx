@@ -4,7 +4,7 @@ let initialState = {
   class: "light",
   dataMenuStyles: "dark",
   dataNavLayout: "vertical",
-  dataHeaderStyles: "dark",
+  dataHeaderStyles: "light",
   dataVerticalStyle: "overlay",
   dataToggled: "",
   dataNavStyle: "",

@@ -6,8 +6,8 @@ export function Dark(actionfunction: any) {
   actionfunction({
     ...theme,
     class: "dark",
-    dataHeaderStyles: "dark",
-    dataMenuStyles: "dark",
+    dataHeaderStyles: "light",
+    dataMenuStyles: "light",
     // "bodyBg": "",
     // "darkBg": "",
     // "inputBorder": "",
