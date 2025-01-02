@@ -131,18 +131,6 @@ const ManagerComponent = ({
                 setPageData,
               }}
             />
-            {handleSubcribedAuto &&
-              isOpenModalConfirmAuto &&
-              setIsOpenModalConfirmAuto && (
-                <ModalConfirm
-                  {...{
-                    modal: "Confirm",
-                    open: isOpenModalConfirmAuto,
-                    setOpen: setIsOpenModalConfirmAuto,
-                    handelFunction: handleSubcribedAuto,
-                  }}
-                />
-              )}
           </div>
         </div>
       </div>
