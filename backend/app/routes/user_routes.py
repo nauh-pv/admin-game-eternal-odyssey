@@ -48,15 +48,22 @@ async def login(request: Request):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
-# # API: Lấy thông tin người dùng hiện tại
-# @router.get(
-#     "/me", 
-#     summary="Lấy thông tin người dùng hiện tại",
-#     description="API này trả về thông tin người dùng hiện tại dựa trên token.",
-#     response_model=UserResponse
-# )
-# async def get_me(current_user: dict = Depends(get_current_user)):
-#     return current_user
+@router.get(
+    "/{user_id}",
+    summary="Lấy thông tin người dùng chi tiết",
+    description="API này trả về thông tin chi tiết của một người dùng, bao gồm các world mà người dùng tham gia.",
+)
+async def get_user_details(user_id: str):
+    try:
+        user_details = user_service.fetch_user_details(user_id)
+        return {
+            "data": user_details,
+            "message": "Successfully fetched user details"
+        }
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
 @router.delete("/{user_id}", summary="Xóa người dùng")
 async def delete_user_api(user_id: str):
