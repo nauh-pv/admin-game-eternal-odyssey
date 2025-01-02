@@ -1,3 +1,4 @@
+import { UserDataUpdate } from "@/shared/types/commonTypes";
 import axios from "@/ultis/axiosInstance";
 
 //Auth
@@ -23,8 +24,8 @@ const deleteAUser = (userID: string) => {
   return axios.delete(`users/${userID}`);
 };
 
-const patchChangePassUser = (userID: string, password: any) => {
-  return axios.patch(`users/${userID}`, password);
+const patchUpdateUserDetails = (userID: string, dataUpdate: UserDataUpdate) => {
+  return axios.patch(`users/${userID}`, dataUpdate);
 };
 
 const getUserDetails = (userID: string) => {
@@ -35,6 +36,6 @@ export {
   postLogin,
   getAllUsers,
   deleteAUser,
-  patchChangePassUser,
+  patchUpdateUserDetails,
   getUserDetails,
 };

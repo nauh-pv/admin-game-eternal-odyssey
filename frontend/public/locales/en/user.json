@@ -1,5 +1,7 @@
 {
-  "userDashboard": [],
+  "userDashboard": {
+    "deleteUser": "Delete User"
+  },
   "modalUser": {
     "user": "User",
     "userDetails": "User Details",

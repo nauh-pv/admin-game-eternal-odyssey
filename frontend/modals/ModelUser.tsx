@@ -1,9 +1,8 @@
 import { Modal, Select, Table } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import { useTranslation } from "next-i18next";
 
 import data from "@/shared/data/user-data.json";
-import { UsersData } from "@/shared/types/commonTypes";
+import { UserDataUpdate, UsersData } from "@/shared/types/commonTypes";
 import { useEffect, useState } from "react";
 import { getUserDetails } from "@/services/apiServicesAdmin";
 import { PiCopySimpleLight } from "react-icons/pi";
@@ -15,6 +14,7 @@ interface ModalUserPostProps {
   userData: UsersData;
   setUserData: React.Dispatch<React.SetStateAction<UsersData>>;
   t: (key: string) => string;
+  handleSubmitModal: () => void;
 }
 
 interface UserWorlds {
@@ -32,6 +32,7 @@ const ModalUser = ({
   userData,
   setUserData,
   t,
+  handleSubmitModal,
 }: ModalUserPostProps) => {
   const [isLoadingUserDetails, setIsLoadingUserDetails] =
     useState<boolean>(false);
@@ -152,11 +153,9 @@ const ModalUser = ({
     setUserData({ ...userData, role: value });
   };
 
-  const handleStatusChange = (value: boolean) => {
+  const handleStatusChange = (value: string) => {
     setUserData({ ...userData, status: value });
   };
-
-  const handleSubmitModal = () => {};
 
   const handleRowClick = (record: any) => {
     console.log("record:", record);
@@ -164,6 +163,10 @@ const ModalUser = ({
 
   const handleOpenModalWorld = (record: any) => {
     console.log("record:", record);
+  };
+
+  const handleOnChangeUsername = (value: string) => {
+    setUserData({ ...userData, username: value });
   };
 
   useEffect(() => {
@@ -208,6 +211,7 @@ const ModalUser = ({
               placeholder="Email"
               autoSize={{ minRows: 1, maxRows: 1 }}
               value={userData.email}
+              disabled
             />
           </div>
           <div className="col-span-modal-3">
@@ -220,6 +224,7 @@ const ModalUser = ({
               placeholder="Customer Idea"
               autoSize={{ minRows: 1, maxRows: 20 }}
               value={userData.username}
+              disabled
             />
           </div>
           <div className="col-span-modal-3">
