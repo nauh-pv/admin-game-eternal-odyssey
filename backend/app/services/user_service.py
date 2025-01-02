@@ -8,12 +8,11 @@ from app.database import get_db_ref
 from app.models.user_model import UserRegister, Token
 
 def format_timestamp(timestamp: int) -> str:
-    """Chuyển đổi timestamp thành chuỗi ngày giờ."""
-    return datetime.fromtimestamp(timestamp / 1000).strftime('%d/%m/%Y %H:%M:%S')  # Chia 1000 vì timestamp là mili giây
+    return datetime.fromtimestamp(timestamp / 1000).strftime('%d/%m/%Y %H:%M:%S')
 
 
 def fetch_all_users() -> List[Dict[str, str]]:
-    all_users = auth.list_users().iterate_all()  # Lấy tất cả người dùng
+    all_users = auth.list_users().iterate_all()
     user_list = []
 
     for user in all_users:
@@ -25,7 +24,7 @@ def fetch_all_users() -> List[Dict[str, str]]:
             "id": user_id,
             "email": user.email,
             "username": user_data.get("username", "N/A"),
-            "created_at": format_timestamp(user.user_metadata.creation_timestamp),  # Chuyển đổi timestamp
+            "created_at": format_timestamp(user.user_metadata.creation_timestamp),
             "updated_at": format_timestamp(user_data.get("updated_at", 0)), 
             "status": user_data.get("status", "1"),
             "role": user_data.get("role", "user"),  
@@ -48,7 +47,7 @@ def register_user(user: UserRegister) -> Token:
     try:
 
         if user_exists(user.email, user.username):
-            raise ValueError("Email hoặc username đã được sử dụng.")  # Lỗi nghiệp vụ
+            raise ValueError("Email hoặc username đã được sử dụng.")
 
         firebase_user = auth.create_user(
             email = user.email,
@@ -125,15 +124,6 @@ def delete_user(user_id: str):
     except Exception as e:
         raise ValueError(f"Failed to delete user: {str(e)}")
     
-def update_user_password(user_id: str, new_password: str):
-    try:
-        auth.update_user(user_id, password=new_password)
-        return {"message": "Password updated successfully"}
-    except auth.UserNotFoundError:
-        raise ValueError("User not found")
-    except Exception as e:
-        raise ValueError(f"Failed to update password: {str(e)}")
-    
 def fetch_worlds_for_user(user_id: str):
     try:
         worlds_ref = db.reference("worlds")
@@ -145,7 +135,6 @@ def fetch_worlds_for_user(user_id: str):
         user_worlds = []
 
         for world_id, world_data in all_worlds.items():
-            # Kiểm tra nếu user_id tồn tại trong playerWorld
             if "playerWorld" in world_data and user_id in world_data["playerWorld"]:
                 user_world = {
                     "world_id": world_id,
@@ -182,3 +171,38 @@ def fetch_user_details(user_id: str) -> dict:
         raise ValueError("User not found in Firebase Authentication")
     except Exception as e:
         raise ValueError(f"Error fetching user details: {str(e)}")
+
+def update_user_info(user_id: str, user_update: dict) -> dict:
+    try:
+        update_fields = {}
+        if "email" in user_update:
+            update_fields["email"] = user_update["email"]
+        if "username" in user_update:
+            update_fields["display_name"] = user_update["username"]
+        if "password" in user_update:
+            update_fields["password"] = user_update["password"]
+
+        auth.update_user(user_id, **update_fields)
+
+        db_ref = db.reference(f"users/{user_id}")
+        user_data_from_db = db_ref.get()
+
+        if not user_data_from_db:
+            raise ValueError("User not found in Firebase Realtime Database")
+
+        for key, value in user_update.items():
+            user_data_from_db[key] = value
+
+        db_ref.update(user_data_from_db)
+
+        return {
+            "user_id": user_id,
+            "email": user_data_from_db.get("email"),
+            "username": user_data_from_db.get("username"),
+            "role": user_data_from_db.get("role"),
+            "status": user_data_from_db.get("status")
+        }
+    except auth.UserNotFoundError:
+        raise ValueError("User not found in Firebase Authentication")
+    except Exception as e:
+        raise ValueError(f"Error updating user information: {str(e)}")

@@ -74,10 +74,14 @@ async def delete_user_api(user_id: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail="Internal Server Error")
     
-@router.patch("/{user_id}/password", summary="Đổi mật khẩu người dùng")
-async def update_user_password_api(user_id: str, new_password: str):
+@router.patch("/{user_id}", summary="Cập nhật thông tin người dùng")
+async def update_user_api(user_id: str, user_update: dict):
     try:
-        return user_service.update_user_password(user_id, new_password)
+        updated_user = user_service.update_user_info(user_id, user_update)
+        return {
+            "data": updated_user,
+            "message": "User information updated successfully"
+        }
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
