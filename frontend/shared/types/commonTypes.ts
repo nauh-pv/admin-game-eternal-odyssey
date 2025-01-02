@@ -4,7 +4,7 @@ export interface UsersData {
   email: string;
   role: string;
   createdAt: string;
-  status: boolean;
+  status: string;
 }
 
 export interface UserState {
@@ -18,4 +18,12 @@ export interface AuthState {
   accessToken: string | null;
   user: UserState | null;
   isAuthenticated: boolean;
+}
+
+export interface UserDataUpdate {
+  username?: string;
+  email?: string;
+  role?: string;
+  status?: string;
+  password?: string;
 }

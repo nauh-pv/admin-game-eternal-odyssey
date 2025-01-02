@@ -1,6 +1,9 @@
 {
-  "userDashboard": [],
+  "userDashboard": {
+    "deleteUser": "Delete User"
+  },
   "modalUser": {
+    "user": "User",
     "userDetails": "User Details",
     "userId": "User ID",
     "email": "Email",
@@ -10,6 +13,7 @@
     "status": "Status",
     "userWorlds": "User Worlds",
     "cancelButton": "Cancel",
-    "updateButton": "Update User"
+    "updateButton": "Update User",
+    "notInWorld": "The user is not in any world!"
   }
 }

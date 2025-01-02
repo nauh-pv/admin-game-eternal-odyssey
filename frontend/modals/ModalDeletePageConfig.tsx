@@ -2,7 +2,7 @@ import React from "react";
 import { Modal } from "antd";
 
 interface ModalDeletePageManagerProps {
-  modal: string;
+  modelName: string;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   pageName?: string;
@@ -12,7 +12,7 @@ interface ModalDeletePageManagerProps {
 }
 
 const ModalDeletePageConfig = ({
-  modal,
+  modelName,
   open,
   setOpen,
   handelFunction,
@@ -28,12 +28,12 @@ const ModalDeletePageConfig = ({
     <>
       {open && (
         <Modal
-          title={modal}
+          title={modelName}
           open={open}
           onOk={handelFunction}
           onCancel={handleCancel}
         >
-          {modal === "Delete Page Manager" ? (
+          {modelName === "Delete Page Manager" ? (
             <p>
               Do you really want to
               <label className="text-red">&nbsp;delete&nbsp;</label>

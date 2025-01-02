@@ -1,11 +1,11 @@
 {
   "statusSelectOptions": [
     {
-      "value": "active",
+      "value": "1",
       "label": "Đang hoạt động"
     },
     {
-      "value": "inactive",
+      "value": "0",
       "label": "Đã khóa"
     }
   ],
