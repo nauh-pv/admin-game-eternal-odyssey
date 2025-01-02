@@ -27,7 +27,7 @@ def fetch_all_users() -> List[Dict[str, str]]:
             "username": user_data.get("username", "N/A"),
             "created_at": format_timestamp(user.user_metadata.creation_timestamp),  # Chuyển đổi timestamp
             "updated_at": format_timestamp(user_data.get("updated_at", 0)), 
-            "status": user_data.get("status", "N/A"),
+            "status": user_data.get("status", "1"),
             "role": user_data.get("role", "user"),  
         }
         user_list.append(user_info)
@@ -136,7 +136,6 @@ def update_user_password(user_id: str, new_password: str):
     
 def fetch_worlds_for_user(user_id: str):
     try:
-        # Lấy reference tới node "worlds"
         worlds_ref = db.reference("worlds")
         all_worlds = worlds_ref.get()
 
@@ -145,20 +144,41 @@ def fetch_worlds_for_user(user_id: str):
 
         user_worlds = []
 
-        # Duyệt qua tất cả các world
         for world_id, world_data in all_worlds.items():
             # Kiểm tra nếu user_id tồn tại trong playerWorld
             if "playerWorld" in world_data and user_id in world_data["playerWorld"]:
-                user_worlds.append({
+                user_world = {
                     "world_id": world_id,
                     "name": world_data.get("name"),
-                    "code": world_data.get("code"),
-                    "role": world_data.get("playerWorld", {}).get(user_id, {}).get("role", None),
-                    "status": world_data.get("questWorld", {}).get("status", None),
-                    "startAt": world_data.get("questWorld", {}).get("startAt", None)
-                })
+                    "role": world_data["playerWorld"][user_id].get("role", "0"),
+                    "status": world_data.get("realtimeObject", {}).get("status", "1"),
+                    "start_at": world_data.get("realtimeObject", {}).get("startAt", "N/A"),
+                    "end_at": world_data.get("endAt", "N/A"),
+                }
+                user_worlds.append(user_world)
 
         return user_worlds
 
     except Exception as e:
         raise ValueError(f"Error fetching user's worlds: {str(e)}")
+    
+def fetch_user_details(user_id: str) -> dict:
+    try:
+        user_db_ref = db.reference(f"users/{user_id}")
+        user_data = user_db_ref.get()
+
+        if not user_data:
+            raise ValueError("User not found in Firebase Realtime Database")
+
+        user_details = {
+        }
+
+        user_worlds = fetch_worlds_for_user(user_id)
+        user_details["worlds"] = user_worlds
+
+        return user_details
+
+    except auth.UserNotFoundError:
+        raise ValueError("User not found in Firebase Authentication")
+    except Exception as e:
+        raise ValueError(f"Error fetching user details: {str(e)}")

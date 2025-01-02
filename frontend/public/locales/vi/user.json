@@ -1,0 +1,15 @@
+{
+  "userDashboard": [],
+  "modalUser": {
+    "userDetails": "Chi tiết người dùng",
+    "userId": "ID Người dùng",
+    "email": "Email",
+    "username": "Tên người dùng",
+    "createdAt": "Ngày tạo",
+    "role": "Vai trò",
+    "status": "Trạng thái",
+    "userWorlds": "Thế giới người dùng",
+    "cancelButton": "Hủy",
+    "updateButton": "Cập nhật người dùng"
+  }
+}

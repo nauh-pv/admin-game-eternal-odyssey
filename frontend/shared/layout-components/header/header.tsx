@@ -8,9 +8,16 @@ import { basePath } from "@/next.config";
 import Image from "next/image";
 import ProfileDropdown from "@/components/ProfileDropdown";
 import dataHeader from "@/shared/data/header.json";
+import { useRouter } from "next/router";
 
 const Header = ({ local_varaiable, ThemeChanger }: any) => {
   const user = useSelector((state: RootState) => state.auth.user);
+  const router = useRouter();
+  const { locale } = router;
+
+  const changeLanguage = (lang: string) => {
+    router.push(router.pathname, router.asPath, { locale: lang });
+  };
 
   const data = (
     <span className="font-[600] py-[0.25rem] px-[0.45rem] rounded-[0.25rem] bg-pink/10 text-pink text-[0.625rem]">
@@ -549,159 +556,66 @@ const Header = ({ local_varaiable, ThemeChanger }: any) => {
                   <i className="bx bx-search-alt-2 header-link-icon"></i>
                 </button>
               </div>
-              <div className="header-element py-[1rem] md:px-[0.65rem] px-2  header-country hs-dropdown ti-dropdown  hidden sm:block [--placement:bottom-left]">
+              <div className="header-element py-[1rem] md:px-[0.65rem] px-2 header-country hs-dropdown ti-dropdown hidden sm:block [--placement:bottom-left]">
                 <button
                   id="dropdown-flag"
                   type="button"
-                  className="hs-dropdown-toggle ti-dropdown-toggle !p-0 flex-shrink-0  !border-0 !rounded-full !shadow-none"
+                  className="hs-dropdown-toggle ti-dropdown-toggle !p-0 flex-shrink-0 !border-0 !rounded-full !shadow-none"
                 >
                   <Image
                     width={100}
                     height={100}
-                    src={`${
-                      process.env.NODE_ENV === "production" ? basePath : ""
-                    }/assets/images/flags/us_flag.jpg`}
+                    src={`/assets/images/flags/${
+                      locale === "vi" ? "vietnam_flag.png" : "england_flag.png"
+                    }`}
                     alt="flag-img"
                     className="h-[1.75rem] w-[1.75rem] p-1 rounded-full"
                   />
                 </button>
-
                 <div
                   className="hs-dropdown-menu ti-dropdown-menu min-w-[10rem] hidden !-mt-3"
                   aria-labelledby="dropdown-flag"
                 >
                   <div className="ti-dropdown-divider divide-y divide-gray-200 dark:divide-white/10">
-                    <div className="py-2 first:pt-0 last:pb-0">
-                      <div className="ti-dropdown-item !p-[0.65rem] ">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] flex items-center w-[1.375rem] rounded-full">
-                            <Image
-                              width={100}
-                              height={100}
-                              src={`${
-                                process.env.NODE_ENV === "production"
-                                  ? basePath
-                                  : ""
-                              }/assets/images/flags/us_flag.jpg`}
-                              alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full"
-                            />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              English
-                            </p>
-                          </div>
+                    <div
+                      className="ti-dropdown-item !p-[0.65rem] cursor-pointer"
+                      onClick={() => changeLanguage("en")}
+                    >
+                      <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
+                          <Image
+                            width={100}
+                            height={100}
+                            src="/assets/images/flags/england_flag.png"
+                            alt="English flag"
+                            className="h-[1rem] w-[1rem] rounded-full"
+                          />
+                        </div>
+                        <div>
+                          <p className="!text-[0.8125rem] font-medium">
+                            English
+                          </p>
                         </div>
                       </div>
-                      <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
-                            <Image
-                              width={100}
-                              height={100}
-                              src={`${
-                                process.env.NODE_ENV === "production"
-                                  ? basePath
-                                  : ""
-                              }/assets/images/flags/spain_flag.jpg`}
-                              alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full"
-                            />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              Spanish
-                            </p>
-                          </div>
+                    </div>
+                    <div
+                      className="ti-dropdown-item !p-[0.65rem] cursor-pointer"
+                      onClick={() => changeLanguage("vi")}
+                    >
+                      <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
+                        <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
+                          <Image
+                            width={100}
+                            height={100}
+                            src="/assets/images/flags/vietnam_flag.png"
+                            alt="Vietnamese flag"
+                            className="h-[1rem] w-[1rem] rounded-full"
+                          />
                         </div>
-                      </div>
-                      <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
-                            <Image
-                              width={100}
-                              height={100}
-                              src={`${
-                                process.env.NODE_ENV === "production"
-                                  ? basePath
-                                  : ""
-                              }/assets/images/flags/french_flag.jpg`}
-                              alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full"
-                            />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              French
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
-                            <Image
-                              width={100}
-                              height={100}
-                              src={`${
-                                process.env.NODE_ENV === "production"
-                                  ? basePath
-                                  : ""
-                              }/assets/images/flags/germany_flag.jpg`}
-                              alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full"
-                            />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              German
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] w-[1.375rem] flex items-center rounded-full">
-                            <Image
-                              width={100}
-                              height={100}
-                              src={`${
-                                process.env.NODE_ENV === "production"
-                                  ? basePath
-                                  : ""
-                              }/assets/images/flags/italy_flag.jpg`}
-                              alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full"
-                            />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              Italian
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="ti-dropdown-item !p-[0.65rem]">
-                        <div className="flex items-center space-x-2 rtl:space-x-reverse w-full">
-                          <div className="h-[1.375rem] w-[1.375rem] flex items-center  rounded-sm">
-                            <Image
-                              width={100}
-                              height={100}
-                              src={`${
-                                process.env.NODE_ENV === "production"
-                                  ? basePath
-                                  : ""
-                              }/assets/images/flags/russia_flag.jpg`}
-                              alt="flag-img"
-                              className="h-[1rem] w-[1rem] rounded-full"
-                            />
-                          </div>
-                          <div>
-                            <p className="!text-[0.8125rem] font-medium">
-                              Russian
-                            </p>
-                          </div>
+                        <div>
+                          <p className="!text-[0.8125rem] font-medium">
+                            Tiếng Việt
+                          </p>
                         </div>
                       </div>
                     </div>

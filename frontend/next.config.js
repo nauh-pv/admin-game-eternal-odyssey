@@ -1,5 +1,7 @@
+const { i18n } = require("./next-i18next.config");
+
 /**@type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig = {
   // output: "export",
   reactStrictMode: false,
@@ -19,9 +21,14 @@ const nextConfig = {
   },
   transpilePackages: [
     "rc-util",
+    "rc-table",
+    "rc-tree",
     "rc-pagination",
     "rc-picker",
+    "rc-input",
     "@ant-design/icons-svg",
+    "i18next",
+    "react-i18next",
   ],
   webpack: (config) => {
     config.module.rules.push({
@@ -34,6 +41,7 @@ const nextConfig = {
   experimental: {
     esmExternals: "loose",
   },
+  i18n,
 };
 
 module.exports = nextConfig;

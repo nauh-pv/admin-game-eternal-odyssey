@@ -1,0 +1,22 @@
+{
+  "statusSelectOptions": [
+    {
+      "value": "active",
+      "label": "Đang hoạt động"
+    },
+    {
+      "value": "inactive",
+      "label": "Đã khóa"
+    }
+  ],
+  "roleSelectOptions": [
+    {
+      "value": "admin",
+      "label": "Admin"
+    },
+    {
+      "value": "user",
+      "label": "User"
+    }
+  ]
+}
