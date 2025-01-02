@@ -1,6 +1,7 @@
-from fastapi import APIRouter, HTTPException, Depends, Request, Response
-from app.models.user_model import UserRegister, UserLogin, Token, UserResponse
+from fastapi import APIRouter, HTTPException, Depends, Request
+from app.models.user_model import UserRegister, Token
 from app.services import user_service
+from app.dependencies.auth import verify_id_token_dependency
 
 router = APIRouter(
     prefix="/api/v1/users",  # Định nghĩa prefix cho các API liên quan đến người dùng
@@ -8,7 +9,7 @@ router = APIRouter(
 )
 
 @router.get("/", summary="Lấy danh sách người dùng", description="API này trả về danh sách tất cả người dùng.")
-def get_all_users():
+def get_all_users(decoded_token: dict = Depends(verify_id_token_dependency)):
     try: 
       users = user_service.fetch_all_users()
       if not users:
@@ -53,7 +54,7 @@ async def login(request: Request):
     summary="Lấy thông tin người dùng chi tiết",
     description="API này trả về thông tin chi tiết của một người dùng, bao gồm các world mà người dùng tham gia.",
 )
-async def get_user_details(user_id: str):
+async def get_user_details(user_id: str, decoded_token: dict = Depends(verify_id_token_dependency)):
     try:
         user_details = user_service.fetch_user_details(user_id)
         return {
@@ -66,7 +67,7 @@ async def get_user_details(user_id: str):
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
 @router.delete("/{user_id}", summary="Xóa người dùng")
-async def delete_user_api(user_id: str):
+async def delete_user_api(user_id: str, decoded_token: dict = Depends(verify_id_token_dependency)):
     try:
         return user_service.delete_user(user_id)
     except ValueError as e:
@@ -75,7 +76,7 @@ async def delete_user_api(user_id: str):
         raise HTTPException(status_code=500, detail="Internal Server Error")
     
 @router.patch("/{user_id}", summary="Cập nhật thông tin người dùng")
-async def update_user_api(user_id: str, user_update: dict):
+async def update_user_api(user_id: str, user_update: dict, decoded_token: dict = Depends(verify_id_token_dependency)):
     try:
         updated_user = user_service.update_user_info(user_id, user_update)
         return {

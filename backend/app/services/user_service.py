@@ -182,7 +182,8 @@ def update_user_info(user_id: str, user_update: dict) -> dict:
         if "password" in user_update:
             update_fields["password"] = user_update["password"]
 
-        auth.update_user(user_id, **update_fields)
+        if update_fields:
+            auth.update_user(user_id, **update_fields)
 
         db_ref = db.reference(f"users/{user_id}")
         user_data_from_db = db_ref.get()
