@@ -27,4 +27,14 @@ const patchChangePassUser = (userID: string, password: any) => {
   return axios.patch(`users/${userID}`, password);
 };
 
-export { postLogin, getAllUsers, deleteAUser, patchChangePassUser };
+const getUserDetails = (userID: string) => {
+  return axios.get(`users/${userID}`);
+};
+
+export {
+  postLogin,
+  getAllUsers,
+  deleteAUser,
+  patchChangePassUser,
+  getUserDetails,
+};

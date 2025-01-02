@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { PiCopySimpleLight } from "react-icons/pi";
 
 import ManagerComponent from "@/components/ManagerComponent";
@@ -7,11 +7,20 @@ import { useDashboardContext } from "@/shared/context/DashboardContext";
 import { UsersData } from "@/shared/types/commonTypes";
 import { handleCopy } from "@/ultis/function";
 import ModalUser from "@/modals/ModelUser";
+import { useTranslation } from "react-i18next";
+
+export const getStaticProps = async ({ locale }: { locale: string }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["user"])),
+  },
+});
 
 const UsersManager = () => {
   const [isLoadingUpdate, setIsLoadingUpdate] = useState<boolean>(false);
   const [isOpenModalUser, setIsOpenModalUser] = useState<boolean>(false);
-  const [isEditMode, setIsEditMode] = useState<boolean>(false);
+
+  const { t } = useTranslation("user");
+
   const [userData, setUserData] = useState<UsersData>({
     username: "",
     id: "",
@@ -154,6 +163,7 @@ const UsersManager = () => {
           handleCloseModalUser,
           userData,
           setUserData,
+          t,
         }}
       />
     </>

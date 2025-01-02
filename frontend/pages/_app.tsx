@@ -6,6 +6,7 @@ import store, { persistor } from "@/shared/redux/store";
 import AuthInitializer from "@/components/AuthInitializer";
 import LayoutWrapper from "@/shared/layout-components/LayoutWrapper";
 import { PersistGate } from "redux-persist/integration/react";
+import { appWithTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps }: any) {
   return (
@@ -20,4 +21,4 @@ function MyApp({ Component, pageProps }: any) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

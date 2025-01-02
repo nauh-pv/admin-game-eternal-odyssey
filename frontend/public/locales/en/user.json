@@ -1,0 +1,15 @@
+{
+  "userDashboard": [],
+  "modalUser": {
+    "userDetails": "User Details",
+    "userId": "User ID",
+    "email": "Email",
+    "username": "Username",
+    "createdAt": "Created At",
+    "role": "Role",
+    "status": "Status",
+    "userWorlds": "User Worlds",
+    "cancelButton": "Cancel",
+    "updateButton": "Update User"
+  }
+}
