@@ -2,7 +2,7 @@ from unstructured.partition.pdf import partition_pdf
 import time
 from transformers import logging
 
-from app.models import _constants
+from models import _constants
 
 logging.set_verbosity_error()
 

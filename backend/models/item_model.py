@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
-from app.models.attributes import Attributes
+from models.attributes import Attributes
 
 class ItemQuantity(BaseModel):
     itemId: str

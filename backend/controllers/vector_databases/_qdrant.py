@@ -4,7 +4,7 @@ import requests
 from langchain_qdrant import Qdrant
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from app.models import _constants, _environments, _ultils
+from models import _constants, _environments, _ultils
 
 
 def save_vector_db_as_ids_single(docs, collection_name, point_ids):

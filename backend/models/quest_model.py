@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional, List
-from app.models.item_model import ItemQuantity
+from models.item_model import ItemQuantity
 
 class Rate(BaseModel):
     from_: int

@@ -3,9 +3,9 @@ from fastapi import Request
 from firebase_admin import auth, db
 from datetime import datetime
 
-from app.database import get_db_ref
+from database import get_db_ref
 
-from app.models.user_model import UserRegister, Token
+from models.user_model import UserRegister, Token
 
 def format_timestamp(timestamp: int) -> str:
     return datetime.fromtimestamp(timestamp / 1000).strftime('%d/%m/%Y %H:%M:%S')

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from app.services import quest_service
+from services import quest_service
 
 router = APIRouter(
     prefix="/api/v1/quests",

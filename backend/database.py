@@ -1,7 +1,8 @@
 import firebase_admin
 from firebase_admin import credentials, db
+import os
 
-from app.config import SERVICE_ACCOUNT_KEY_PATH, FIREBASE_DATABASE_URL
+from config import SERVICE_ACCOUNT_KEY_PATH, FIREBASE_DATABASE_URL
 
 # Khởi tạo Firebase Admin SDK
 cred = credentials.Certificate(SERVICE_ACCOUNT_KEY_PATH)

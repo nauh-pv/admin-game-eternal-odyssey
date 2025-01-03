@@ -9,7 +9,7 @@ import asyncio
 import threading
 from pathlib import Path
 
-from app.models import _constants
+from models import _constants
 from controllers.rag import _upload_files
 from controllers.chatbot import _chatbot_eternal
 
