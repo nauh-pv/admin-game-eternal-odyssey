@@ -8,7 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate
 
 from controllers.rag import _clean_data
 
-from app.models import _environments, _prompts, _constants
+from models import _environments, _prompts, _constants
 from controllers.rag import _rag_qdrant, _history
 from controllers.vector_databases import _qdrant
 
@@ -67,7 +67,14 @@ def chatbot_stream(
     db = _rag_qdrant.load_vector_db(_constants.NAME_CHATBOT)
     retrievers = _rag_qdrant.retriever_question(db, query)
 
-    history_context = ""
+    # if session_id == "":
+    #     session_id = str(uuid.uuid4())
+    # history = _history.get_history(session_id)
+    history = _history.get_history("tmp")
+    history_context = "\n".join(
+        [f"Q: {item['query']}\nA: {item['answer']}" for item in history]
+    )
+    history_context = _clean_data.validate_and_fix_braces(history_context)
 
     contexts = _clean_data.validate_and_fix_braces(retrievers)
 
@@ -102,6 +109,12 @@ def chatbot_stream(
 
             answer += content
             yield content
+
+        threading.Thread(
+            target=_history.save_history,
+            args=("tmp", query, answer),
+        ).start()
+
         return
 
     return generate_chat_responses({"input": str(query)})

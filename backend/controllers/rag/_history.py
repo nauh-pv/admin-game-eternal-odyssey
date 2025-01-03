@@ -1,7 +1,7 @@
 import json
 import os
 
-from app.models import _constants
+from models import _constants
 
 
 ############################################################################################################
@@ -25,18 +25,14 @@ def save_history(session_id, query, answer):
                 print(f"Error decoding JSON from file: {user_history_file}")
                 pass
 
-    # Append new query and answer
     history.append({"query": query, "answer": answer})
 
-    # Limit the total number of entries to 20
-    if len(history) > 7:
-        history = history[-7:]
+    if len(history) > 3:
+        history = history[-3:]
 
-    # Process answers to keep only the 3 most recent ones
-    for entry in history[:-3]:
+    for entry in history[:-2]:
         entry["answer"] = ""
 
-    # Save history back to file
     with open(user_history_file, "w", encoding="utf-8") as file:
         json.dump(history, file, indent=4)
 
