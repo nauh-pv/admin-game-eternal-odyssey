@@ -502,3 +502,15 @@
 .col-span-modal-6 {
   @apply col-span-6 flex flex-col gap-1;
 }
+
+.item-yellow {
+  @apply bg-amber-100 text-amber-600;
+}
+
+.item-red {
+  @apply bg-rose-100 text-rose-600;
+}
+
+.item-green {
+  @apply bg-emerald-100 text-emerald-600;
+}

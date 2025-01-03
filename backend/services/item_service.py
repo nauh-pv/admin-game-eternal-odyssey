@@ -33,8 +33,11 @@ def fetch_item_by_id(item_id: str):
 
 def create_new_item(item_data: dict):
     try:
-        if "itemId" not in item_data:
+        if "itemID" not in item_data:
             raise ValueError("itemId is required to create a new item.")
+
+        if "itemID" in item_data:
+            item_data["itemId"] = item_data.pop("itemID")
 
         item_id = item_data["itemId"]
         items_ref = db.reference("items")
@@ -69,6 +72,6 @@ def delete_item_by_id(item_id: str):
             raise ValueError(f"Item with ID {item_id} not found")
 
         item_ref.delete()
-        return True
+        return item_id
     except Exception as e:
         raise ValueError(f"Error deleting item: {str(e)}")

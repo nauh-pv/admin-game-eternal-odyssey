@@ -57,6 +57,6 @@ async def delete_item(item_id: str):
         result = item_service.delete_item_by_id(item_id)
         if not result:
             raise HTTPException(status_code=404, detail="Item not found")
-        return {"message": "Item deleted successfully"}
+        return {"message": "Item deleted successfully","data": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

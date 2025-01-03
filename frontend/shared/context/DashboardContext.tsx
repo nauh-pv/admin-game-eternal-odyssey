@@ -10,12 +10,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { AppDispatch, RootState } from "../redux/store";
 import { LoadingComponent } from "@/components/Loading";
-import { getAllUsers, getAllWorlds } from "@/services/apiServicesAdmin";
-import { UsersData } from "../types/commonTypes";
+import {
+  getAllItems,
+  getAllUsers,
+  getAllWorlds,
+} from "@/services/apiServicesAdmin";
+import { ItemData, UsersData } from "../types/commonTypes";
 
 interface DashboardContextType {
   listUsers: UsersData[];
   setListUsers: React.Dispatch<React.SetStateAction<UsersData[]>>;
+  listItems: any[];
+  setListItems: React.Dispatch<React.SetStateAction<ItemData[]>>;
 }
 const AppContext = createContext<DashboardContextType | undefined>(undefined);
 
@@ -25,6 +31,7 @@ interface DashboardProviderProps {
 
 export const DashboardProvider = ({ children }: DashboardProviderProps) => {
   const [listUsers, setListUsers] = useState<UsersData[]>([]);
+  const [listItems, setListItems] = useState<ItemData[]>([]);
 
   const isLoadingGlobal = useSelector(
     (state: RootState) => state.loading.global
@@ -51,12 +58,44 @@ export const DashboardProvider = ({ children }: DashboardProviderProps) => {
     }
   }, []);
 
+  const fetchListItems = useCallback(async () => {
+    try {
+      const res = await getAllItems();
+      console.log("list items", res);
+      if (res.status === 200) {
+        const questsList = res.data.data.map((item: any) => ({
+          itemID: item.itemId,
+          createTime: item.createTime,
+          description: item.description,
+          name: item.name,
+          type: item.type,
+          attributes: {
+            attackSpeed: item.attributes.attackSpeed,
+            damage: item.attributes.damage,
+            health: item.attributes.health,
+            crit: item.attributes.crit,
+            intelligence: item.attributes.intelligence,
+            resistance: item.attributes.resistance,
+            runSpeed: item.attributes.runSpeed,
+          },
+          usingTime: item.usingTime,
+        }));
+        setListItems([...questsList]);
+      }
+    } catch (error) {
+      console.log("error quests:", error);
+    }
+  }, []);
+
   useEffect(() => {
     fetchListUsers();
+    fetchListItems();
   }, []);
 
   return (
-    <AppContext.Provider value={{ listUsers, setListUsers }}>
+    <AppContext.Provider
+      value={{ listUsers, setListUsers, listItems, setListItems }}
+    >
       {isLoadingGlobal ? (
         <div className="w-[100%] h-[100vh]">
           <LoadingComponent />

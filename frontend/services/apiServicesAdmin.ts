@@ -102,6 +102,8 @@ const patchUpdateItemDetails = (itemID: string, dataUpdate: any) => {
 };
 
 const postCreateItem = (dataCreate: any) => {
+  console.log("Data input", dataCreate);
+
   return axios.post("items", dataCreate);
 };
 
