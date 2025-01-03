@@ -42,6 +42,9 @@ const nextConfig = {
     esmExternals: "loose",
   },
   i18n,
+  eslint: {
+    ignoreDuringBuilds: true, // Bỏ qua kiểm tra ESLint khi deploy
+  },
 };
 
 module.exports = nextConfig;

@@ -42,7 +42,6 @@
     "no-dupe-class-members": "off",
     "react/no-unknown-property": "off",
     "no-unused-vars": "off",
-    "eslint no-lone-blocks": "off",
     "react/no-unescaped-entities": "off",
     "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
     "react/react-in-jsx-scope": "off"
