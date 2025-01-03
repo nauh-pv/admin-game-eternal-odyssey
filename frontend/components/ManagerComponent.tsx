@@ -2,7 +2,6 @@ import Seo from "@/shared/layout-components/seo/seo";
 import React, { Fragment, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import dynamic from "next/dynamic";
-import ModalConfirm from "@/modals/ModalConfirm";
 import { ClipLoader } from "react-spinners";
 import ButtonGradient from "./ButtonGradient";
 const TableData = dynamic(() => import("@/components/TableData"), {
@@ -11,15 +10,8 @@ const TableData = dynamic(() => import("@/components/TableData"), {
 
 interface ManagerComponentProps {
   list: any;
-  setIsOpenModalConfirmAuto?: React.Dispatch<React.SetStateAction<boolean>>;
-  handleSubcribedAuto?: () => void;
-  listPagesId?: any[];
-  setListPagesId?: React.Dispatch<React.SetStateAction<any[]>>;
-  setAccessTokenPageSelect?: React.Dispatch<React.SetStateAction<string>>;
-  isOpenModalConfirmAuto?: boolean;
   columnName: any;
   componentName: string;
-  onChangeAuto?: any;
   handleAddNew?: () => void;
   isLoadingButtonAddNew?: boolean;
   setPageData?: React.Dispatch<React.SetStateAction<any>>;
@@ -29,36 +21,22 @@ interface ManagerComponentProps {
 
 const ManagerComponent = ({
   list,
-  setIsOpenModalConfirmAuto,
-  handleSubcribedAuto,
-  listPagesId,
-  setListPagesId,
-  setAccessTokenPageSelect,
-  isOpenModalConfirmAuto,
   columnName,
   componentName,
-  onChangeAuto,
   handleAddNew,
   isLoadingButtonAddNew,
   setPageData,
   handleUpdateListPage,
   isLoadingUpdate,
 }: ManagerComponentProps) => {
-  const [isFileManagerOpen, setFileManagerOpen] = useState(false);
   const [querySearch, setQuerySearch] = useState<string>("");
   const [listSelected, setListSelected] = useState<React.Key[]>([]);
-
-  const toggleFileManager1 = () => {
-    setFileManagerOpen(false);
-  };
 
   return (
     <Fragment>
       <Seo title={`${componentName} Manager`} />
       <div className="file-manager-container p-2 gap-2 sm:!flex !block text-defaulttextcolor text-defaultsize custom-background-table">
-        <div
-          className={`file-manager-folders ${isFileManagerOpen ? "open" : ""}`}
-        >
+        <div className="file-manager-folders">
           <div className="flex p-4 flex-wrap gap-2 items-center justify-between border-b dark:border-defaultborder/10">
             <div>
               <h6 className="font-semibold mb-0 text-[1rem]">

@@ -1,52 +1,50 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { PiCopySimpleLight } from "react-icons/pi";
 import { useTranslation } from "react-i18next";
+import { message } from "antd";
 
 import ManagerComponent from "@/components/ManagerComponent";
-import { useDashboardContext } from "@/shared/context/DashboardContext";
-import { UsersData } from "@/shared/types/commonTypes";
+import { WorldData } from "@/shared/types/commonTypes";
 import { handleCopy } from "@/ultis/function";
-import ModalUser from "@/modals/ModalUser";
 import {
-  deleteAUser,
-  patchUpdateUserDetails,
+  deleteAWorld,
+  getAllWorlds,
+  patchUpdateWorldDetails,
 } from "@/services/apiServicesAdmin";
-import { message } from "antd";
-import ModalConfirm from "@/modals/ModalConfirm";
+import ModalWorld from "@/modals/ModalWorld";
+import ModalConfirmDeleteWorld from "@/modals/ModalConfirmDeleteWorld";
 
 export const getStaticProps = async ({ locale }: { locale: string }) => ({
   props: {
-    ...(await serverSideTranslations(locale, ["user", "commonModal"])),
+    ...(await serverSideTranslations(locale, ["quest", "commonModal"])),
   },
 });
 
-const UsersManager = () => {
+const QuestManager = () => {
   const [isLoadingUpdate, setIsLoadingUpdate] = useState<boolean>(false);
-  const [isOpenModalUser, setIsOpenModalUser] = useState<boolean>(false);
+  const [isOpenModalWorld, setIsOpenModalWorld] = useState<boolean>(false);
   const [isOpenModalConfirmDelete, setIsOpenModalConfirmDelete] =
     useState<boolean>(false);
-  const [userData, setUserData] = useState<UsersData>({
-    username: "",
-    id: "",
-    email: "",
-    role: "",
-    createdAt: "",
-    status: "0",
+  const [worldData, setWorldData] = useState<WorldData>({
+    worldID: "",
+    name: "",
+    status: 0,
+    startAt: "",
+    endAt: "",
+    code: "",
   });
-  const [userDataBefore, setUserDataBefore] = useState<UsersData>({
-    username: "",
-    id: "",
-    email: "",
-    role: "",
-    createdAt: "",
-    status: "0",
+  const [worldDataBefore, setWorldDataBefore] = useState<WorldData>({
+    worldID: "",
+    name: "",
+    status: 0,
+    startAt: "",
+    endAt: "",
+    code: "",
   });
+  const [listWorlds, setListWorlds] = useState<WorldData[]>([]);
 
-  const { t } = useTranslation(["user", "commonModal"]);
-
-  const dataContextApp = useDashboardContext();
-  const { listUsers, setListUsers } = dataContextApp;
+  const { t } = useTranslation(["world", "commonModal"]);
 
   const columnName = [
     {
@@ -55,8 +53,8 @@ const UsersManager = () => {
       render: (text: string, record: any, index: number) => index + 1,
     },
     {
-      title: "User ID",
-      dataIndex: "id",
+      title: "World ID",
+      dataIndex: "worldID",
       render: (id: string) => {
         return (
           <p
@@ -70,30 +68,15 @@ const UsersManager = () => {
       },
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      render: (email: string) => {
+      title: "Name",
+      dataIndex: "name",
+      render: (name: string) => {
         return (
           <p
             className="text-primary group flex items-center gap-2 cursor-pointer"
-            onClick={() => handleCopy(email)}
+            onClick={() => handleCopy(name)}
           >
-            {email}
-            <PiCopySimpleLight className="group-hover:opacity-100 opacity-0" />
-          </p>
-        );
-      },
-    },
-    {
-      title: "Username",
-      dataIndex: "username",
-      render: (username: string) => {
-        return (
-          <p
-            className="text-primary group flex items-center gap-2 cursor-pointer"
-            onClick={() => handleCopy(username)}
-          >
-            {username}
+            {name}
             <PiCopySimpleLight className="group-hover:opacity-100 opacity-0" />
           </p>
         );
@@ -101,27 +84,20 @@ const UsersManager = () => {
     },
     {
       title: "Created At",
-      dataIndex: "createdAt",
+      dataIndex: "startAt",
     },
     {
-      title: "Role",
-      dataIndex: "role",
-      render: (role: string) => {
-        return role === "user" ? (
-          <p className="uppercase">User</p>
-        ) : (
-          <p className="text-red uppercase">Admin</p>
-        );
-      },
+      title: "End At",
+      dataIndex: "endAt",
     },
     {
       title: "Status",
       dataIndex: "status",
       render: (status: string) => {
-        return status === "1" ? (
+        return status === "0" ? (
           <p className="text-green uppercase">Đang hoạt động</p>
         ) : (
-          <p className="text-red uppercase">Đã khóa</p>
+          <p className="text-red uppercase">Đang ngoại tuyến</p>
         );
       },
     },
@@ -149,49 +125,70 @@ const UsersManager = () => {
     },
   ];
 
+  const fetchListWorlds = useCallback(async () => {
+    try {
+      const response = await getAllWorlds();
+      console.log("response worlds:", response);
+      if (response.status === 200) {
+        const worldsList = response.data.data.map((item: any) => ({
+          worldID: item.world_id,
+          name: item.name,
+          startAt: item.startAt,
+          endAt: item.endAt,
+          status: item.status,
+          code: item.code,
+        }));
+        setListWorlds([...worldsList]);
+      }
+    } catch (error) {
+      console.log("error worlds:", error);
+    }
+  }, []);
+
   const handleUpdateListPage = () => {};
 
-  const handleOpenModalUser = (user: UsersData) => {
-    setIsOpenModalUser(true);
-    setUserData(user);
-    setUserDataBefore(user);
+  const handleOpenModalUser = (world: WorldData) => {
+    setIsOpenModalWorld(true);
+    setWorldData(world);
+    setWorldDataBefore(world);
   };
 
-  const handleCloseModalUser = () => {
-    setIsOpenModalUser(false);
+  const handleCloseModalWorld = () => {
+    setIsOpenModalWorld(false);
   };
 
   const checkDataUserUpdate = () => {
-    let userDataUpdate = {};
-    if (userDataBefore.username !== userData.username)
-      userDataUpdate = { ...userDataUpdate, username: userData.username };
-    if (userDataBefore.email !== userData.email)
-      userDataUpdate = { ...userDataUpdate, email: userData.email };
-    if (userDataBefore.role !== userData.role)
-      userDataUpdate = { ...userDataUpdate, role: userData.role };
-    if (userDataBefore.status !== userData.status)
-      userDataUpdate = { ...userDataUpdate, status: userData.status };
-    return userDataUpdate;
+    let worldDataUpdate = {};
+    if (worldDataBefore.code !== worldData.code)
+      worldDataUpdate = { ...worldDataUpdate, code: worldData.code };
+    if (worldDataBefore.name !== worldData.name)
+      worldDataUpdate = { ...worldDataUpdate, name: worldData.name };
+    if (worldDataBefore.status !== worldData.status)
+      worldDataUpdate = { ...worldDataUpdate, status: worldData.status };
+    return worldDataUpdate;
   };
 
   const handleUpdateUserDetails = async () => {
     try {
-      const userDataUpdate = checkDataUserUpdate();
-      if (Object.keys(userDataUpdate).length === 0) {
+      const worldDataUpdate = checkDataUserUpdate();
+      if (Object.keys(worldDataUpdate).length === 0) {
         message.error("No data change to update");
         return;
       }
 
-      const res = await patchUpdateUserDetails(userData.id, userDataUpdate);
+      const res = await patchUpdateWorldDetails(
+        worldData.worldID,
+        worldDataUpdate
+      );
       if (res.status === 200) {
-        setUserData((prev) => ({
+        setWorldData((prev) => ({
           ...prev,
           email: res.data.data.email,
           username: res.data.data.username,
           role: res.data.data.role,
           status: res.data.data.status,
         }));
-        setUserDataBefore((prev) => ({
+        setWorldDataBefore((prev) => ({
           ...prev,
           email: res.data.data.email,
           username: res.data.data.username,
@@ -199,62 +196,62 @@ const UsersManager = () => {
           status: res.data.data.status,
         }));
 
-        const indexUserUpdate = listUsers.findIndex(
-          (user) => user.id === res.data.data.user_id
+        const indexUserUpdate = listWorlds.findIndex(
+          (world) => world.worldID === res.data.data.world_id
         );
 
         if (indexUserUpdate !== -1) {
-          setListUsers((prev) => {
+          setListWorlds((prev) => {
             const newList = [...prev];
-            newList[indexUserUpdate].role = res.data.data.role;
+            newList[indexUserUpdate].code = res.data.data.code;
             newList[indexUserUpdate].status = res.data.data.status;
             return newList;
           });
         }
       }
     } catch (error) {
-      message.error("Update user details failed");
+      message.error("Update world details failed");
       console.log(error);
     } finally {
-      setIsOpenModalUser(false);
-      message.success("Update user details successfully");
+      setIsOpenModalWorld(false);
+      message.success("Update world details successfully");
     }
   };
 
-  const handleOpenModalConfirmDelete = (record: UsersData) => {
+  const handleOpenModalConfirmDelete = (record: WorldData) => {
     setIsOpenModalConfirmDelete(true);
-    setUserData(record);
+    setWorldData(record);
   };
 
   const setDataUserDefault = () => {
-    setUserData({
-      username: "",
-      id: "",
-      email: "",
-      role: "",
-      createdAt: "",
-      status: "0",
+    setWorldData({
+      worldID: "",
+      name: "",
+      status: 0,
+      startAt: "",
+      endAt: "",
+      code: "",
     });
-    setUserDataBefore({
-      username: "",
-      id: "",
-      email: "",
-      role: "",
-      createdAt: "",
-      status: "0",
+    setWorldDataBefore({
+      worldID: "",
+      name: "",
+      status: 0,
+      startAt: "",
+      endAt: "",
+      code: "",
     });
   };
 
-  const handleDeleteUser = async () => {
+  const handleDeleteWorld = async () => {
     try {
-      const res = await deleteAUser(userData.id);
+      const res = await deleteAWorld(worldData.worldID);
       if (res.status === 200) {
-        const indexUserDelete = listUsers.findIndex(
-          (user) => user.id === userData.id
+        const indexUserDelete = listWorlds.findIndex(
+          (world) => world.worldID === worldData.worldID
         );
 
         if (indexUserDelete !== -1) {
-          setListUsers((prev) => {
+          setListWorlds((prev) => {
             const newList = [...prev];
             newList.splice(indexUserDelete, 1);
             return newList;
@@ -271,42 +268,46 @@ const UsersManager = () => {
     }
   };
 
+  useEffect(() => {
+    fetchListWorlds();
+  }, []);
+
   return (
     <>
       <ManagerComponent
         {...{
-          list: listUsers,
+          list: listWorlds,
           columnName,
-          componentName: "Users",
+          componentName: "Worlds",
           nameButton: "",
-          setUserData,
+          setWorldData,
           handleUpdateListPage,
           isLoadingUpdate,
         }}
       />
-      <ModalUser
+      <ModalWorld
         {...{
-          isOpenModalUser: isOpenModalUser,
-          handleCloseModalUser,
-          userData,
-          setUserData,
+          isOpenModalWorld: isOpenModalWorld,
+          handleCloseModalWorld,
+          worldData,
+          setWorldData,
           t,
           handleSubmitModal: handleUpdateUserDetails,
         }}
       />
-      <ModalConfirm
+      <ModalConfirmDeleteWorld
         {...{
           open: isOpenModalConfirmDelete,
           setOpen: setIsOpenModalConfirmDelete,
-          handelFunction: handleDeleteUser,
-          modal: t("userDashboard.deleteUser"),
+          handelFunction: handleDeleteWorld,
+          modal: t("worldDashboard.deleteWorld"),
           t,
-          userID: userData.id,
+          worldID: worldData.worldID,
         }}
       />
     </>
   );
 };
 
-UsersManager.layout = "Contentlayout";
-export default UsersManager;
+QuestManager.layout = "Contentlayout";
+export default QuestManager;

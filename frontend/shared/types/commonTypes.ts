@@ -27,3 +27,21 @@ export interface UserDataUpdate {
   status?: string;
   password?: string;
 }
+
+export interface WorldData {
+  worldID: string;
+  name: string;
+  status: number;
+  startAt: string;
+  endAt: string;
+  code: string;
+}
+
+export interface QuestData {
+  worldID: string;
+  name: string;
+  status: number;
+  startAt: string;
+  endAt: string;
+  code: string;
+}

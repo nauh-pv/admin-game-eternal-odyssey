@@ -1,17 +1,19 @@
 {
-  "userDashboard": [],
+  "userDashboard": {
+    "deleteUser": "Xóa Người Dùng"
+  },
   "modalUser": {
-    "user": "Người dùng",
-    "userDetails": "Chi tiết người dùng",
-    "userId": "ID Người dùng",
+    "user": "Người Dùng",
+    "userDetails": "Chi Tiết Người Dùng",
+    "userId": "ID Người Dùng",
     "email": "Email",
-    "username": "Tên người dùng",
-    "createdAt": "Ngày tạo",
-    "role": "Vai trò",
-    "status": "Trạng thái",
-    "userWorlds": "Thế giới người dùng",
+    "username": "Tên Người Dùng",
+    "createdAt": "Ngày Tạo",
+    "role": "Vai Trò",
+    "status": "Trạng Thái",
+    "userWorlds": "Thế Giới Người Dùng",
     "cancelButton": "Hủy",
-    "updateButton": "Cập nhật người dùng",
-    "notInWorld": "Người dùng đang không ở trong thế giới nào!"
+    "updateButton": "Cập Nhật Người Dùng",
+    "notInWorld": "Người dùng không tham gia bất kỳ thế giới nào!"
   }
 }

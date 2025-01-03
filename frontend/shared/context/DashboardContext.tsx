@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { AppDispatch, RootState } from "../redux/store";
 import { LoadingComponent } from "@/components/Loading";
-import { getAllUsers } from "@/services/apiServicesAdmin";
+import { getAllUsers, getAllWorlds } from "@/services/apiServicesAdmin";
 import { UsersData } from "../types/commonTypes";
 
 interface DashboardContextType {
