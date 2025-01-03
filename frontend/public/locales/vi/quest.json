@@ -1,21 +1,24 @@
 {
-  "worldDashboard": {
-    "deleteWorld": "Delete World"
+  "questDashboard": {
+    "deleteQuest": "Xóa Nhiệm Vụ"
   },
-  "modalWorld": {
-    "world": "World",
-    "worldDetails": "World Details",
-    "worldID": "World ID",
-    "name": "Name",
-    "code": "Code",
-    "createdAt": "Created At",
-    "endAt": "End At",
-    "status": "Status",
-    "cancelButton": "Cancel",
-    "updateButton": "Update World",
-    "playersWorld": "Players World",
-    "questsWorld": "Quests World",
-    "notUsersInWorld": "There are no users in the world!",
-    "notQuestsInWorld": "There are no quests in the world!"
+  "modalQuest": {
+    "quest": "Nhiệm Vụ",
+    "questDetails": "Chi Tiết Nhiệm Vụ",
+    "questID": "ID Nhiệm Vụ",
+    "name": "Tên",
+    "code": "Mã",
+    "createdAt": "Ngày Tạo",
+    "endAt": "Ngày Kết Thúc",
+    "title": "Tiêu Đề",
+    "description": "Mô Tả",
+    "targetDescription": "Mô Tả Mục Tiêu",
+    "completionConditions": "Điều Kiện Hoàn Thành",
+    "status": "Trạng Thái",
+    "cancelButton": "Hủy",
+    "updateButton": "Cập Nhật Nhiệm Vụ",
+    "playersQuest": "Người Chơi Tham Gia Nhiệm Vụ",
+    "tasksQuest": "Công Việc Trong Nhiệm Vụ",
+    "questsWorld": "Nhiệm Vụ Trong Thế Giới"
   }
 }

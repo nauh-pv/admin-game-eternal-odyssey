@@ -647,13 +647,13 @@ const SidebarUser = ({ local_varaiable, ThemeChanger }: any) => {
         <div className="main-sidebar-header">
           <Link href="/" className="header-logo">
             <Image
-              width={120}
-              height={170}
+              width={200}
+              height={300}
               src={`${
                 process.env.NODE_ENV === "production" ? basePath : ""
               }/assets/images/brand-logos/logo.png`}
               alt="logo"
-              className="main-logo desktop-logo"
+              className="main-logo desktop-logo h-[90px] w-fit"
             />
             <Image
               width={100}
@@ -665,13 +665,13 @@ const SidebarUser = ({ local_varaiable, ThemeChanger }: any) => {
               className="main-logo toggle-logo"
             />
             <Image
-              width={120}
-              height={170}
+              width={200}
+              height={300}
               src={`${
                 process.env.NODE_ENV === "production" ? basePath : ""
               }/assets/images/brand-logos/logo.png`}
               alt="logo"
-              className="main-logo desktop-dark"
+              className="main-logo desktop-dark !h-[90px] w-fit"
             />
             <Image
               width={100}
@@ -680,7 +680,7 @@ const SidebarUser = ({ local_varaiable, ThemeChanger }: any) => {
                 process.env.NODE_ENV === "production" ? basePath : ""
               }/assets/images/brand-logos/logoSingle.png`}
               alt="logo"
-              className="main-logo toggle-dark"
+              className="main-logo toggle-dark "
             />
             <Image
               width={120}
