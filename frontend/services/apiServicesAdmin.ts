@@ -63,6 +63,29 @@ const deleteInventoryFromWorld = (
   );
 };
 
+//Quest Manager
+const getAllQuests = () => {
+  return axios.get("quests");
+};
+
+const getQuestDetails = (questID: string) => {
+  return axios.get(`quests/${questID}`);
+};
+
+const deleteAQuest = (questID: string) => {
+  return axios.delete(`quests/${questID}`);
+};
+
+const patchUpdateQuestDetails = (questID: string, dataUpdate: any) => {
+  return axios.patch(`quests/${questID}`, dataUpdate);
+};
+
+const postCreateQuest = (dataCreate: any) => {
+  console.log("Check data input:", dataCreate);
+
+  return axios.post("quests", dataCreate);
+};
+
 export {
   postLogin,
   getAllUsers,
@@ -75,4 +98,9 @@ export {
   patchUpdateWorldDetails,
   deleteAUserFromWorld,
   deleteInventoryFromWorld,
+  getAllQuests,
+  getQuestDetails,
+  deleteAQuest,
+  patchUpdateQuestDetails,
+  postCreateQuest,
 };

@@ -37,11 +37,32 @@ export interface WorldData {
   code: string;
 }
 
+interface ItemQuantity {
+  itemId: string;
+  quantity: number;
+}
+
+interface Rate {
+  from: number;
+  to: number;
+}
+
+interface RewardItem {
+  itemId: string;
+  quantity: number;
+  rate: Rate;
+}
+
+interface Reward {
+  rewardItem: RewardItem[];
+  xp: number;
+}
+
 export interface QuestData {
-  worldID: string;
-  name: string;
-  status: number;
-  startAt: string;
-  endAt: string;
-  code: string;
+  questID: string;
+  description: string;
+  targetDescription: string;
+  title: string;
+  completionConditions: ItemQuantity[];
+  reward: Reward;
 }

@@ -69,6 +69,13 @@ const TableData = ({
         item.worldID.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
+    if (componentName === "Quests") {
+      return (
+        item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.questID.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
     return false;
   });
 
