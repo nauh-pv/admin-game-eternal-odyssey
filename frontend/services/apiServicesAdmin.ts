@@ -81,8 +81,6 @@ const patchUpdateQuestDetails = (questID: string, dataUpdate: any) => {
 };
 
 const postCreateQuest = (dataCreate: any) => {
-  console.log("Check data input:", dataCreate);
-
   return axios.post("quests", dataCreate);
 };
 

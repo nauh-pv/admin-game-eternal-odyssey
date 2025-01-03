@@ -11,7 +11,6 @@
     "description": "Description",
     "targetDescription": "Target Description",
     "completionConditions": "Completion Conditions",
-    "updateButton": "Update Quest",
     "cancelButton": "Cancel",
     "questsWorld": "Quests in the World",
     "noConditions": "There are no completion conditions"

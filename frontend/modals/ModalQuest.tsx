@@ -28,7 +28,9 @@ const modalQuest = ({
         title={isEditMode ? t("modalQuest.quest") : t("modalQuest.createQuest")}
         open={isOpenModalQuest}
         onOk={handleSubmitModal}
-        okText={t("modalQuest.updateButton")}
+        okText={
+          isEditMode ? t("modalQuest.updateQuest") : t("modalQuest.createQuest")
+        }
         onCancel={handleCloseModalQuest}
         cancelText={t("modalQuest.cancelButton")}
         width={1000}
