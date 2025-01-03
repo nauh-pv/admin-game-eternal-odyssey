@@ -3,7 +3,7 @@ from threading import Lock
 import threading
 import os
 
-from app.models import _constants
+from models import _constants
 from controllers.vector_databases import _qdrant
 from controllers.rag import _node_structed, _clean_data
 from controllers.load_documents import (

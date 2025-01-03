@@ -1,8 +1,8 @@
 from pydantic import BaseModel, EmailStr
 from typing import List, Optional, Dict
 
-from app.models.attributes import Attributes
-from app.models.item_model import Item, ItemQuantity
+from models.attributes import Attributes
+from models.item_model import Item, ItemQuantity
 
 class Experience(BaseModel):
     """

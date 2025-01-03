@@ -6,7 +6,7 @@ from langchain_core.documents import Document
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain.text_splitter import CharacterTextSplitter
 
-from app.models import _environments, _constants
+from models import _environments, _constants
 
 load_dotenv()
 

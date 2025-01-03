@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends, Request
-from app.models.user_model import UserRegister, Token
-from app.services import user_service
-from app.dependencies.auth import verify_id_token_dependency
+from models.user_model import UserRegister, Token
+from services import user_service
+from dependencies.auth import verify_id_token_dependency
 
 router = APIRouter(
     prefix="/api/v1/users",  # Định nghĩa prefix cho các API liên quan đến người dùng

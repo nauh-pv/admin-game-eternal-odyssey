@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, Request, Response
-from app.models.world_model import World
-from app.services import world_service
+from models.world_model import World
+from services import world_service
 
 router = APIRouter(
     prefix="/api/v1/worlds",

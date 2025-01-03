@@ -2,7 +2,7 @@ from typing import List, Dict
 from fastapi import Request
 from firebase_admin import auth, db
 
-from app.models.world_model import World
+from models.world_model import World
 
 def fetch_worlds_for_user(user_id: str):
     try:
