@@ -7,6 +7,7 @@ router = APIRouter(
 )
 
 @router.get("/", summary="Lấy danh sách tất cả các Item")
+@router.get("", summary="Lấy danh sách tất cả các Item")
 async def get_all_items():
     try:
         items = item_service.fetch_all_items()
@@ -16,6 +17,7 @@ async def get_all_items():
 
 
 @router.get("/{item_id}", summary="Lấy thông tin chi tiết Item")
+@router.get("/{item_id}/", summary="Lấy thông tin chi tiết Item")
 async def get_item_detail(item_id: str):
     try:
         item = item_service.fetch_item_by_id(item_id)
@@ -27,6 +29,7 @@ async def get_item_detail(item_id: str):
 
 
 @router.post("/", summary="Tạo mới một Item")
+@router.post("", summary="Tạo mới một Item")
 async def create_item(item_data: dict):
     try:
         new_item = item_service.create_new_item(item_data)
@@ -36,6 +39,7 @@ async def create_item(item_data: dict):
 
 
 @router.patch("/{item_id}", summary="Cập nhật thông tin Item")
+@router.patch("/{item_id}/", summary="Cập nhật thông tin Item")
 async def update_item(item_id: str, updated_data: dict):
     try:
         updated_item = item_service.update_item_by_id(item_id, updated_data)
@@ -47,6 +51,7 @@ async def update_item(item_id: str, updated_data: dict):
 
 
 @router.delete("/{item_id}", summary="Xóa một Item")
+@router.delete("/{item_id}/", summary="Xóa một Item")
 async def delete_item(item_id: str):
     try:
         result = item_service.delete_item_by_id(item_id)

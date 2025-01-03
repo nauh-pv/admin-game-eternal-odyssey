@@ -9,6 +9,7 @@ router = APIRouter(
 )
 
 @router.get("/", summary="Lấy danh sách người dùng", description="API này trả về danh sách tất cả người dùng.")
+@router.get("", summary="Lấy danh sách người dùng", description="API này trả về danh sách tất cả người dùng.")
 def get_all_users(decoded_token: dict = Depends(verify_id_token_dependency)):
     try: 
       users = user_service.fetch_all_users()
@@ -54,6 +55,11 @@ async def login(request: Request):
     summary="Lấy thông tin người dùng chi tiết",
     description="API này trả về thông tin chi tiết của một người dùng, bao gồm các world mà người dùng tham gia.",
 )
+@router.get(
+    "/{user_id}/",
+    summary="Lấy thông tin người dùng chi tiết",
+    description="API này trả về thông tin chi tiết của một người dùng, bao gồm các world mà người dùng tham gia.",
+)
 async def get_user_details(user_id: str, decoded_token: dict = Depends(verify_id_token_dependency)):
     try:
         user_details = user_service.fetch_user_details(user_id)
@@ -67,6 +73,7 @@ async def get_user_details(user_id: str, decoded_token: dict = Depends(verify_id
         raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
 
 @router.delete("/{user_id}", summary="Xóa người dùng")
+@router.delete("/{user_id}/", summary="Xóa người dùng")
 async def delete_user_api(user_id: str, decoded_token: dict = Depends(verify_id_token_dependency)):
     try:
         return user_service.delete_user(user_id)
@@ -76,6 +83,7 @@ async def delete_user_api(user_id: str, decoded_token: dict = Depends(verify_id_
         raise HTTPException(status_code=500, detail="Internal Server Error")
     
 @router.patch("/{user_id}", summary="Cập nhật thông tin người dùng")
+@router.patch("/{user_id}/", summary="Cập nhật thông tin người dùng")
 async def update_user_api(user_id: str, user_update: dict, decoded_token: dict = Depends(verify_id_token_dependency)):
     try:
         updated_user = user_service.update_user_info(user_id, user_update)
