@@ -1,18 +1,24 @@
 {
-  "dashboardQuest": {
+  "questDashboard": {
     "deleteQuest": "Delete Quest"
   },
   "modalQuest": {
-    "updateQuest": "Update Quest",
-    "createQuest": "Create Quest",
+    "quest": "Quest",
     "questDetails": "Quest Details",
     "questID": "Quest ID",
+    "name": "Name",
+    "code": "Code",
+    "createdAt": "Created At",
+    "endAt": "End At",
     "title": "Title",
     "description": "Description",
     "targetDescription": "Target Description",
     "completionConditions": "Completion Conditions",
+    "status": "Status",
     "cancelButton": "Cancel",
-    "questsWorld": "Quests in the World",
-    "noConditions": "There are no completion conditions"
+    "updateButton": "Update Quest",
+    "playersQuest": "Players Quest",
+    "tasksQuest": "Tasks Quest",
+    "questsWorld": "Quests World"
   }
 }

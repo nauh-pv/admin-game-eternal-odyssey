@@ -25,7 +25,7 @@ const modalQuest = ({
   return (
     <div>
       <Modal
-        title={isEditMode ? t("modalQuest.quest") : t("modalQuest.createQuest")}
+        title="Quest"
         open={isOpenModalQuest}
         onOk={handleSubmitModal}
         okText={

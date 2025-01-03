@@ -13,7 +13,7 @@ import React, { Fragment } from "react";
 const DashBoard = () => {
   return (
     <Fragment>
-      <Seo title={"Crm"} />
+      <Seo title={"Dashboard"} />
       <div className="md:flex block items-center justify-between my-[1.5rem] page-header-breadcrumb">
         <div>
           <p className="font-semibold text-[1.125rem] text-defaulttextcolor dark:text-defaulttextcolor/70 !mb-0 ">
