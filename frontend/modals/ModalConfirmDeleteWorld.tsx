@@ -7,16 +7,16 @@ interface DeleteProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handelFunction: any;
   t: (key: string) => string;
-  userID: string;
+  worldID: string;
 }
 
-const ModalConfirm = ({
+const ModalConfirmDeleteWorld = ({
   modal,
   open,
   setOpen,
   handelFunction,
   t,
-  userID,
+  worldID,
 }: DeleteProps) => {
   const handleCancel = () => {
     setOpen(false);
@@ -32,8 +32,9 @@ const ModalConfirm = ({
           onCancel={handleCancel}
         >
           <p>
-            {t("youWantToDeleteUser")}
-            <label className="text-red">&nbsp;{userID && userID}&nbsp;</label>?
+            {t("youWantToDeleteWorld")}
+            <label className="text-red">&nbsp;{worldID && worldID}&nbsp;</label>
+            ?
           </p>
         </Modal>
       )}
@@ -41,4 +42,4 @@ const ModalConfirm = ({
   );
 };
 
-export default ModalConfirm;
+export default ModalConfirmDeleteWorld;

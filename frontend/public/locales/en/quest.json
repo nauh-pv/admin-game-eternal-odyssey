@@ -1,0 +1,19 @@
+{
+  "dashboardQuest": {
+    "deleteQuest": "Delete Quest"
+  },
+  "modalQuest": {
+    "updateQuest": "Update Quest",
+    "createQuest": "Create Quest",
+    "questDetails": "Quest Details",
+    "questID": "Quest ID",
+    "title": "Title",
+    "description": "Description",
+    "targetDescription": "Target Description",
+    "completionConditions": "Completion Conditions",
+    "updateButton": "Update Quest",
+    "cancelButton": "Cancel",
+    "questsWorld": "Quests in the World",
+    "noConditions": "There are no completion conditions"
+  }
+}

@@ -37,6 +37,11 @@ axiosInstance.interceptors.response.use(
       try {
         const user = auth.currentUser;
         if (!user) {
+          await auth.signOut();
+          store.dispatch(clearAccessToken());
+          localStorage.removeItem("accessToken");
+          sessionStorage.removeItem("accessToken");
+          window.location.href = "/";
           throw new Error("Người dùng chưa đăng nhập");
         }
 

@@ -1,3 +1,5 @@
 {
-  "youWantToDelete": "Bạn muốn xóa người dùng có ID là"
+  "youWantToDeleteUser": "Bạn muốn xóa người dùng có ID là",
+  "youWantToDeleteWorld": "Bạn muốn xóa thế giới có ID là",
+  "youWantToDeleteQuest": "Bạn muốn xóa quest có ID là"
 }

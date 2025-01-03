@@ -1,0 +1,21 @@
+{
+  "worldDashboard": {
+    "deleteWorld": "Xóa Thế giới"
+  },
+  "modalWorld": {
+    "world": "Thế Giới",
+    "worldDetails": "Chi Tiết Thế Giới",
+    "worldID": "ID Thế Giới",
+    "name": "Tên",
+    "code": "Mã",
+    "createdAt": "Ngày Tạo",
+    "endAt": "Ngày Kết Thúc",
+    "status": "Trạng Thái",
+    "cancelButton": "Hủy",
+    "updateButton": "Cập Nhật Thế Giới",
+    "playersWorld": "Người Chơi Trong Thế Giới",
+    "questsWorld": "Nhiệm Vụ Trong Thế Giới",
+    "notUsersInWorld": "Không có người chơi trong thế giới!",
+    "notQuestsInWorld": "Không có nhiệm vụ nào trong thế giới!"
+  }
+}

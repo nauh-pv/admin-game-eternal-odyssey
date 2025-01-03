@@ -5,7 +5,8 @@ import { clearAccessToken } from "@/shared/redux/authSlice";
 import { useRouter } from "next/router";
 import { message } from "antd";
 import { postLogout } from "@/services/apiServices";
-import { RootState } from "@/shared/redux/store";
+import store, { RootState } from "@/shared/redux/store";
+import { auth } from "@/ultis/firebase";
 interface BadgeProps {
   text: string;
   color: string;
@@ -35,22 +36,17 @@ const ProfileDropdown = ({ dropdownItems }: ProfileDropdownProps) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleLogOut = async () => {
+  const handleLogout = async () => {
     try {
-      const res = await postLogout();
-      if (res.status === 200) {
-        dispatch(clearAccessToken());
-        localStorage.removeItem("accessToken");
-        sessionStorage.removeItem("accessToken");
-        localStorage.removeItem("listConfig");
-        localStorage.removeItem("listProcedure");
-        localStorage.removeItem("listIdentity");
-        localStorage.removeItem("listPage");
-        router.push("/sign-in");
-        message.success("Logout success.");
-      }
-    } catch (e) {
-      console.log(e);
+      await auth.signOut();
+      store.dispatch(clearAccessToken());
+      localStorage.removeItem("accessToken");
+      sessionStorage.removeItem("accessToken");
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Lỗi khi đăng xuất:", error);
+    } finally {
+      message.success("Đăng xuất thành công");
     }
   };
 
@@ -82,7 +78,7 @@ const ProfileDropdown = ({ dropdownItems }: ProfileDropdownProps) => {
         <li>
           <button
             className="w-full ti-dropdown-item !text-[0.8125rem] !gap-x-0 !p-[0.65rem] !inline-flex"
-            onClick={handleLogOut}
+            onClick={handleLogout}
           >
             <i className="ti ti-logout text-[1.125rem] me-2 opacity-[0.7]"></i>
             Log Out

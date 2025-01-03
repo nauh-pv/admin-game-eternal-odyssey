@@ -1,0 +1,21 @@
+{
+  "worldDashboard": {
+    "deleteWorld": "Delete World"
+  },
+  "modalWorld": {
+    "world": "World",
+    "worldDetails": "World Details",
+    "worldID": "World ID",
+    "name": "Name",
+    "code": "Code",
+    "createdAt": "Created At",
+    "endAt": "End At",
+    "status": "Status",
+    "cancelButton": "Cancel",
+    "updateButton": "Update World",
+    "playersWorld": "Players World",
+    "questsWorld": "Quests World",
+    "notUsersInWorld": "There are no users in the world!",
+    "notQuestsInWorld": "There are no quests in the world!"
+  }
+}

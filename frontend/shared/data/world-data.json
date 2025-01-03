@@ -1,0 +1,16 @@
+{
+  "statusSelectOptions": [
+    {
+      "value": 0,
+      "label": "Ngoại tuyến"
+    },
+    {
+      "value": 1,
+      "label": "Đang hoạt động"
+    },
+    {
+      "value": 2,
+      "label": "Đã khóa"
+    }
+  ]
+}

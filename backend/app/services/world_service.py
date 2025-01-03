@@ -134,7 +134,17 @@ def update_world_by_id(world_id: str, updated_data: dict) -> bool:
         if not existing_data:
             raise ValueError(f"World with ID {world_id} not found")
 
-        world_ref.update(updated_data)
-        return True
+        for key, value in updated_data.items():
+            existing_data[key] = value
+
+        world_ref.update(existing_data)
+        return {
+            "world_id": world_id,
+            "name": existing_data.get("name"),
+            "code": existing_data.get("code"),
+            "status": existing_data.get("status"),
+            "endAt": existing_data.get("endAt"),
+            "startAt": existing_data.get("startAt")
+        }
     except Exception as e:
         raise ValueError(f"Error updating world: {str(e)}")
