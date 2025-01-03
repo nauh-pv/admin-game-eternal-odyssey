@@ -84,6 +84,27 @@ const postCreateQuest = (dataCreate: any) => {
   return axios.post("quests", dataCreate);
 };
 
+//Item Manager
+const getAllItems = () => {
+  return axios.get("items");
+};
+
+const getItemDetails = (itemID: string) => {
+  return axios.get(`items/${itemID}`);
+};
+
+const deleteAItem = (itemID: string) => {
+  return axios.delete(`items/${itemID}`);
+};
+
+const patchUpdateItemDetails = (itemID: string, dataUpdate: any) => {
+  return axios.patch(`items/${itemID}`, dataUpdate);
+};
+
+const postCreateItem = (dataCreate: any) => {
+  return axios.post("items", dataCreate);
+};
+
 export {
   postLogin,
   getAllUsers,
@@ -101,4 +122,9 @@ export {
   deleteAQuest,
   patchUpdateQuestDetails,
   postCreateQuest,
+  getAllItems,
+  getItemDetails,
+  deleteAItem,
+  patchUpdateItemDetails,
+  postCreateItem,
 };
