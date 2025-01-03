@@ -7,6 +7,7 @@ router = APIRouter(
 )
 
 @router.get("/", summary="Lấy danh sách tất cả các Quest")
+@router.get("", summary="Lấy danh sách tất cả các Quest")
 async def get_all_quests():
     try:
         quests = quest_service.fetch_all_quests()
@@ -16,6 +17,7 @@ async def get_all_quests():
 
 
 @router.get("/{quest_id}", summary="Lấy thông tin chi tiết Quest")
+@router.get("/{quest_id}/", summary="Lấy thông tin chi tiết Quest")
 async def get_quest_detail(quest_id: str):
     try:
         quest = quest_service.fetch_quest_by_id(quest_id)
@@ -27,6 +29,7 @@ async def get_quest_detail(quest_id: str):
 
 
 @router.post("/", summary="Tạo mới một Quest")
+@router.post("", summary="Tạo mới một Quest")
 async def create_quest(quest_data: dict):
     try:
         new_quest = quest_service.create_new_quest(quest_data)
@@ -36,6 +39,7 @@ async def create_quest(quest_data: dict):
 
 
 @router.patch("/{quest_id}", summary="Cập nhật thông tin Quest")
+@router.patch("/{quest_id}/", summary="Cập nhật thông tin Quest")
 async def update_quest(quest_id: str, updated_data: dict):
     try:
         updated_quest = quest_service.update_quest_by_id(quest_id, updated_data)
@@ -47,6 +51,7 @@ async def update_quest(quest_id: str, updated_data: dict):
 
 
 @router.delete("/{quest_id}", summary="Xóa một Quest")
+@router.delete("/{quest_id}/", summary="Xóa một Quest")
 async def delete_quest(quest_id: str):
     try:
         result = quest_service.delete_quest_by_id(quest_id)
