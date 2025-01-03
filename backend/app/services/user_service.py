@@ -94,8 +94,17 @@ def verify_firebase_token(id_token: str):
     try:
         decoded_token = auth.verify_id_token(id_token)
         return decoded_token 
+    except auth.InvalidIdTokenError:
+        raise ValueError("Invalid ID token")
+    except auth.ExpiredIdTokenError:
+        raise ValueError("Token has expired")
+    except auth.RevokedIdTokenError:
+        raise ValueError("Token has been revoked")
     except Exception as e:
-        raise ValueError(f"{str(e)}")
+        # Bắt lỗi Clock Skew hoặc các lỗi khác
+        if "Token used too early" in str(e):
+            raise ValueError("Clock skew detected. Please ensure your system clock is accurate.")
+        raise ValueError(f"Failed to verify token: {str(e)}")
 
 def extract_token_from_header(request: Request) -> str:
     auth_header = request.headers.get("Authorization")

@@ -6,25 +6,12 @@ router = APIRouter(
     prefix="/api/v1/worlds",
     tags=["Worlds"]
 )
-
-@router.get("/user/{user_id}", summary="Lấy danh sách các world của người dùng")
-async def get_user_worlds(user_id: str):
-    """
-    API để lấy danh sách các world mà người dùng đang tham gia.
-    """
-    try:
-        user_worlds = world_service.fetch_user_worlds(user_id)
-        if not user_worlds:
-            raise HTTPException(status_code=404, detail="User is not part of any world")
-        return {"user_id": user_id, "worlds": user_worlds}
-    except ValueError as e:
-        raise HTTPException(status_code=500, detail=str(e))
     
 @router.get("/", summary="Lấy danh sách tất cả các world")
 async def get_all_worlds():
     try:
         all_worlds = world_service.fetch_all_worlds()
-        return {"worlds": all_worlds}
+        return {"data": all_worlds}
     except ValueError as e:
         raise HTTPException(status_code=500, detail=str(e))
     
@@ -77,13 +64,14 @@ async def delete_item_inventory_user(world_id: str, user_id: str, item_id: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail="Internal Server Error")
     
-@router.put("/{world_id}", summary="Cập nhật thông tin World")
+@router.patch("/{world_id}", summary="Cập nhật thông tin World")
 async def update_world(world_id: str, updated_data: dict):
     try:
         result = world_service.update_world_by_id(world_id, updated_data)
         if not result:
             raise HTTPException(status_code=404, detail="World not found or update failed")
-        return {"message": "World updated successfully"}
+        return {"message": "World updated successfully",
+                "data": result}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
