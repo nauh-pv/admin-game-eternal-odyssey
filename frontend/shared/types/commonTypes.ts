@@ -66,3 +66,23 @@ export interface QuestData {
   completionConditions: ItemQuantity[];
   reward: Reward;
 }
+
+interface Attributes {
+  attackSpeed: number;
+  damage: Rate;
+  health: Rate;
+  crit: number;
+  intelligence: number;
+  resistance: number;
+  runSpeed: number;
+}
+
+export interface ItemData {
+  itemID: string;
+  createTime: number;
+  description: string;
+  name: string;
+  type: number;
+  attributes: Attributes;
+  usingTime: number;
+}

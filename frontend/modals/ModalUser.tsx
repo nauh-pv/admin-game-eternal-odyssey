@@ -2,7 +2,7 @@ import { Modal, Select, Table } from "antd";
 import TextArea from "antd/es/input/TextArea";
 
 import data from "@/shared/data/user-data.json";
-import { UserDataUpdate, UsersData } from "@/shared/types/commonTypes";
+import { UsersData } from "@/shared/types/commonTypes";
 import { useEffect, useState } from "react";
 import { getUserDetails } from "@/services/apiServicesAdmin";
 import { PiCopySimpleLight } from "react-icons/pi";

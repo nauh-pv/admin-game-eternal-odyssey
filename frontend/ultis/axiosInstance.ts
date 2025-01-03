@@ -4,7 +4,7 @@ import { auth } from "./firebase";
 import { clearAccessToken, setAccessToken } from "@/shared/redux/authSlice";
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: "https://eternal-odyssey-api.mekongai.com/api/v1/",
+  baseURL: "http://127.0.0.1:8000/api/v1/",
   timeout: 100000,
   headers: {
     "Content-Type": "application/json",

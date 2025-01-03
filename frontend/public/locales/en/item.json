@@ -1,0 +1,18 @@
+{
+  "itemDashboard": {
+    "deleteItem": "Delete Item"
+  },
+  "modalItem": {
+    "item": "Item",
+    "createItem": "Create Item",
+    "updateItem": "Update Item",
+    "cancelButton": "Cancel",
+    "ItemDetails": "Item Details",
+    "ItemID": "Item ID",
+    "name": "Name",
+    "description": "Description",
+    "usingTime": "Using Time",
+    "createTime": "Create Time",
+    "type": "Type"
+  }
+}

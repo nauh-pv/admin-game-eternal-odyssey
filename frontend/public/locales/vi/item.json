@@ -1,0 +1,18 @@
+{
+  "itemDashboard": {
+    "deleteItem": "Xóa vật phẩm"
+  },
+  "modalItem": {
+    "item": "Vật phẩm",
+    "createItem": "Tạo mới vật phẩm",
+    "updateItem": "Cập nhật vật phẩm",
+    "cancelButton": "Hủy bỏ",
+    "ItemDetails": "Chi tiết vật phẩm",
+    "ItemID": "Mã vật phẩm",
+    "name": "Tên vật phẩm",
+    "description": "Mô tả",
+    "usingTime": "Thời gian sử dụng",
+    "createTime": "Thời gian tạo",
+    "type": "Loại"
+  }
+}

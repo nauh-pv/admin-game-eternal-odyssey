@@ -18,5 +18,19 @@
       "value": "user",
       "label": "User"
     }
+  ],
+  "typeSelectOptions": [
+    {
+      "value": 0,
+      "label": "Normal"
+    },
+    {
+      "value": 1,
+      "label": "Rare"
+    },
+    {
+      "value": 2,
+      "label": "Legendary"
+    }
   ]
 }

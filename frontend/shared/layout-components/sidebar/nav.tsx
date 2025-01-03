@@ -77,11 +77,11 @@ export const MenuItems: any = [
   },
   {
     icon: EnemyManagerIcon,
-    title: "Enemies Manager",
+    title: "Item Manager",
     type: "link",
     active: false,
     selected: false,
-    path: "/dashboard/enemies",
+    path: "/dashboard/items",
   },
   {
     icon: BuildingManagerIcon,
