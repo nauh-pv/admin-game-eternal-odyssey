@@ -10,6 +10,7 @@ import { handleCopy } from "@/ultis/function";
 import {
   deleteAQuest,
   getAllQuests,
+  patchUpdateQuestDetails,
   postCreateQuest,
 } from "@/services/apiServicesAdmin";
 import ModalQuest from "@/modals/ModalQuest";
@@ -103,7 +104,7 @@ const QuestManager = () => {
       width: 150,
     },
     {
-      title: "targetDescription",
+      title: "Target Description",
       dataIndex: "targetDescription",
     },
     {
@@ -133,7 +134,6 @@ const QuestManager = () => {
   const fetchListQuests = useCallback(async () => {
     try {
       const response = await getAllQuests();
-      console.log("response quests:", response);
       if (response.status === 200) {
         const questsList = response.data.data.map((item: any) => ({
           questID: item.questId,
@@ -161,64 +161,88 @@ const QuestManager = () => {
 
   const handleCloseModalQuest = () => {
     setIsOpenModalQuest(false);
+    setDataUserDefault();
+    setIsEditMode(false);
   };
 
   const checkDataUserUpdate = () => {
-    let worldDataUpdate = {};
-    // if (questDataBefore.code !== questData.code)
-    //   worldDataUpdate = { ...worldDataUpdate, code: questData.code };
-    // if (questDataBefore.name !== questData.name)
-    //   worldDataUpdate = { ...worldDataUpdate, name: questData.name };
-    // if (questDataBefore.status !== questData.status)
-    //   worldDataUpdate = { ...worldDataUpdate, status: questData.status };
-    return worldDataUpdate;
+    let questDataUpdate = {};
+    if (questDataBefore.title !== questData.title)
+      questDataUpdate = { ...questDataUpdate, title: questData.title };
+    if (questDataBefore.description !== questData.description)
+      questDataUpdate = {
+        ...questDataUpdate,
+        description: questData.description,
+      };
+    if (questDataBefore.targetDescription !== questData.targetDescription)
+      questDataUpdate = {
+        ...questDataUpdate,
+        targetDescription: questData.targetDescription,
+      };
+    return questDataUpdate;
   };
 
   const handleUpdateQuestDetails = async () => {
-    // try {
-    //   const worldDataUpdate = checkDataUserUpdate();
-    //   if (Object.keys(worldDataUpdate).length === 0) {
-    //     message.error("No data change to update");
-    //     return;
-    //   }
-    //   const res = await patchUpdateWorldDetails(
-    //     questData.questID,
-    //     worldDataUpdate
-    //   );
-    //   if (res.status === 200) {
-    //     setQuestData((prev) => ({
-    //       ...prev,
-    //       email: res.data.data.email,
-    //       username: res.data.data.username,
-    //       role: res.data.data.role,
-    //       status: res.data.data.status,
-    //     }));
-    //     setQuestDataBefore((prev) => ({
-    //       ...prev,
-    //       email: res.data.data.email,
-    //       username: res.data.data.username,
-    //       role: res.data.data.role,
-    //       status: res.data.data.status,
-    //     }));
-    //     const indexUserUpdate = listQuests.findIndex(
-    //       (quest) => quest.questID === res.data.data.world_id
-    //     );
-    //     if (indexUserUpdate !== -1) {
-    //       setListQuests((prev) => {
-    //         const newList = [...prev];
-    //         newList[indexUserUpdate].code = res.data.data.code;
-    //         newList[indexUserUpdate].status = res.data.data.status;
-    //         return newList;
-    //       });
-    //     }
-    //   }
-    // } catch (error) {
-    //   message.error("Update quest details failed");
-    //   console.log(error);
-    // } finally {
-    //   setIsOpenModalQuest(false);
-    //   message.success("Update quest details successfully");
-    // }
+    try {
+      const questDataUpdate = checkDataUserUpdate();
+      if (Object.keys(questDataUpdate).length === 0) {
+        message.error("No data change to update");
+        return;
+      }
+      const res = await patchUpdateQuestDetails(
+        questData.questID,
+        questDataUpdate
+      );
+
+      console.log("Check res update quest:", res);
+
+      if (res.status === 200) {
+        const updatedData = res.data.data;
+
+        setQuestData((prev) => ({
+          ...prev,
+          ...(updatedData.title !== undefined && { title: updatedData.title }),
+          ...(updatedData.description !== undefined && {
+            description: updatedData.description,
+          }),
+          ...(updatedData.target_description !== undefined && {
+            targetDescription: updatedData.target_description,
+          }),
+        }));
+        setQuestDataBefore((prev) => ({
+          ...prev,
+          ...(updatedData.title !== undefined && { title: updatedData.title }),
+          ...(updatedData.description !== undefined && {
+            description: updatedData.description,
+          }),
+          ...(updatedData.target_description !== undefined && {
+            targetDescription: updatedData.target_description,
+          }),
+        }));
+        const indexQuestUpdate = listQuests.findIndex(
+          (quest) => quest.questID === updatedData.quest_id
+        );
+        if (indexQuestUpdate !== -1) {
+          setListQuests((prev) => {
+            const newList = [...prev];
+            if (updatedData.title !== undefined)
+              newList[indexQuestUpdate].title = updatedData.title;
+            if (updatedData.description !== undefined)
+              newList[indexQuestUpdate].description = updatedData.description;
+            if (updatedData.target_description !== undefined)
+              newList[indexQuestUpdate].targetDescription =
+                updatedData.target_description;
+            return newList;
+          });
+        }
+      }
+      message.success("Update quest details successfully");
+    } catch (error) {
+      message.error("Update quest details failed");
+      console.log(error);
+    } finally {
+      setIsOpenModalQuest(false);
+    }
   };
 
   const handleOpenModalConfirmDelete = (record: QuestData) => {
@@ -273,18 +297,34 @@ const QuestManager = () => {
 
   const handleAddNewQuest = async () => {
     setIsLoadingAddNewQuest(true);
-    setQuestData((prev) => ({
-      ...prev,
+    const questDataNew = {
+      ...questData,
       questID: `quest_0${listQuests.length + 1}`,
-    }));
+    };
     try {
-      const res = await postCreateQuest(questData);
-      console.log(res);
+      const res = await postCreateQuest(questDataNew);
+      console.log("Check res add new quest:", res);
+
+      if (res.status === 200) {
+        setListQuests((prev) => [
+          ...prev,
+          {
+            questID: res.data.data.questId,
+            title: res.data.data.title,
+            description: res.data.data.description,
+            targetDescription: res.data.data.target_description,
+            completionConditions: res.data.data.completionConditions,
+            reward: res.data.data.reward,
+          },
+        ]);
+        message.success("Add new quest successfully");
+      }
     } catch (error) {
       console.log(error);
       setIsLoadingAddNewQuest(false);
     } finally {
       setIsLoadingAddNewQuest(false);
+      setIsOpenModalQuest(false);
     }
   };
 

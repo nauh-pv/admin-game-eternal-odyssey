@@ -73,6 +73,7 @@ def login_user(id_token: str) -> dict:
 
         user_id = decoded_token["uid"]
 
+        print("Đây là user_id:",user_id)
         ref = db.reference(f"users/{user_id}")
         user_data_from_db = ref.get()
 

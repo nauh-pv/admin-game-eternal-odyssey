@@ -73,7 +73,8 @@ const TableData = ({
       return (
         item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.questID.toLowerCase().includes(searchTerm.toLowerCase())
+        item.questID.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.targetDescription.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     return false;
