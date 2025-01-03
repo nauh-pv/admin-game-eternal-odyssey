@@ -8,7 +8,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://admin-game-eternalodyssey.vercel.app"],
+    allow_origins=["https://admin-game-eternalodyssey.vercel.app, https://admin-game-eternalodyssey.vercel.app/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
