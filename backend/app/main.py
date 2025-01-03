@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from app.routes import user_routes, world_routes, chatbot_routes
+from app.routes import user_routes, world_routes, chatbot_routes, quest_routes
 
 app = FastAPI()
 
@@ -18,6 +18,7 @@ app.add_middleware(
 app.include_router(user_routes.router)
 app.include_router(world_routes.router)
 app.include_router(chatbot_routes.router)
+app.include_router(quest_routes.router)
 
 @app.get("/")
 def read_root():
